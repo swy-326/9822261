@@ -121,10 +121,13 @@ caso 2, n : 1
 
 /*
 
-Se n == 1, o unico disco é movido de local de origem para o destino
-Se n >= 2:
-	primeiramente executa hanoi(ori, aux, dst, n-1), o que move todos os discos acima do disco maior para auxiliar
-	segundo executa hanoi(ori, dst, aux, 1), o que move o disco maior para o destino
-	terceiro executa hanoi(aux, dst, ori, n-1), o que move o resto dos discos ordenados haste auxiliar
+Em caso base em que há apenas um disco, ou seja, n == 1, o disco é movimentado diretamente da origem para o destino. 
+
+Em outros casos em que o número de discos é maior igual que 2:
+- Primeiramente, pela chamada da linha 6, movimenta-se todos os discos, exceto o disco maior, da primeira à segunda haste, utilizando como auxiliar a terceira haste. Foi passado como parâmetro (n - 1), e não (n), pois o disco maior deve ser movimentado separadamente.
+- Supondo que na função acima (n - 1) discos foram movimentados corretamente, falta movimentar o último disco maior que ficou na primeira haste. Como o parâmetro n da função Hanói é 1 na linha 7, trata-se de um caso base em que movimenta-se direto da origem (primeira haste) para o destino (terceira haste - onde se encontra vazia).
+- Por último, supondo que a etapa anterior foi executada corretamente, apenas falta movimentar todos os (n - 1) discos que ficaram na segunda haste. Assim, a função chamada recursivamente na linha 8 movimenta todos eles para a terceira haste, onde se encontra o disco maior.
+
+Assim, todos os discos são movimentados de origem ao destino, como prometida pela função Hanói.
 
 */
