@@ -31,27 +31,33 @@ void adiciona(int x, NO* p){
 	printf("Adicionado %d em %d, anterior %d e prox como %d\n", x, novo, pp, novo->prox);
 }
 
+NO* verificaRepeticao(NO* p){
+	NO *pp = p;
+	NO *ppp = p->prox;
+	while ((pp->valor == ppp->valor) && (ppp != NULL)){
+		pp = pp->prox;
+		ppp = ppp->prox;
+	}
+	return pp;
+}
+
 NO* uniao(NO* p1, NO* p2){
 	printf("\n\n\n");
 	NO *p11 = p1;
 	NO *p22 = p2;
 
-	NO *p111 = p1->prox;
-	NO *p222 = p2->prox;
+	NO *p111 = p11->prox;
+	NO *p222 = p22->prox;
 
 	NO *nuevo = (NO*) malloc (sizeof(NO));
+	// primeira insercao
 	nuevo->prox = NULL;
 
-	while(p11 != NULL && p22 != NULL){
+	while(p11 && p22) {
 		// pular as repeticoes
-		while (p11->valor == p111->valor && p11->prox != NULL){
-			p11 = p11->prox;
-			p111 = p111->prox;
-		}
-		while (p22->valor == p222->valor && p22->prox != NULL){
-			p22 = p22->prox;
-			p222 = p222->prox;
-		}
+
+		p11 = verificaRepeticao(p11);
+		p22 = verificaRepeticao(p22);
 
 		if (p11->valor < p22->valor){
 			adiciona(p11->valor, nuevo);
@@ -64,10 +70,21 @@ NO* uniao(NO* p1, NO* p2){
 		}
 		// if (p11->valor > p22->valor)
 		else {
-			adiciona(p2->valor, nuevo);
+			adiciona(p22->valor, nuevo);
 			p22 = p22->prox;
 		}
 	}
+
+	// tem q verificar repeticao
+	while (p11){
+		adiciona(p11->valor, nuevo);
+		p11 = p11->prox;
+	}
+	while (p22){
+		adiciona(p22->valor, nuevo);
+		p22 = p22->prox;
+	}
+
 	return nuevo;
 }
 
@@ -84,10 +101,12 @@ int main() {
 
 	adiciona(7, p1);
 	adiciona(9, p1);
-	adiciona(6, p2);
+	adiciona(2, p2);
+	adiciona(2, p2);
+	adiciona(2, p2);
 	adiciona(8, p2);
 
 	NO* teste = uniao(p1,p2);
 	printf("\n");
 	imprime(teste);
-} 
+}
