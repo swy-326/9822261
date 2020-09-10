@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <malloc.h>
 
-
-// elemento da lista
 typedef struct estr {
         int valor;
         struct estr* prox;
@@ -31,15 +29,6 @@ void adiciona(int x, NO* p){
 	printf("Adicionado %d em %d, anterior %d e prox como %d\n", x, novo, pp, novo->prox);
 }
 
-NO* verificaRepeticao(NO* p){
-	NO *pp = p;
-	NO *ppp = p->prox;
-	while ((pp->valor == ppp->valor) && (ppp != NULL)){
-		pp = pp->prox;
-		ppp = ppp->prox;
-	}
-	return pp;
-}
 
 NO* uniao(NO* p1, NO* p2){
 	printf("\n\n\n");
@@ -50,14 +39,17 @@ NO* uniao(NO* p1, NO* p2){
 	NO *p222 = p22->prox;
 
 	NO *nuevo = (NO*) malloc (sizeof(NO));
+
+	// se tamanho dos dois forem 0, return head
+	// se apenas um tamanho for zero, recorre ao caso embaixo
+	// se os dois forem nao vazia:
+
 	// primeira insercao
 	nuevo->prox = NULL;
 
 	while(p11 && p22) {
-		// pular as repeticoes
+		// verificar e pular repeticoes
 
-		p11 = verificaRepeticao(p11);
-		p22 = verificaRepeticao(p22);
 
 		if (p11->valor < p22->valor){
 			adiciona(p11->valor, nuevo);
@@ -99,13 +91,12 @@ int main() {
 	p2->valor = 2;
 	p2->prox = NULL;
 
-	adiciona(7, p1);
-	adiciona(9, p1);
 	adiciona(2, p2);
 	adiciona(2, p2);
 	adiciona(2, p2);
 	adiciona(8, p2);
 
+ 
 	NO* teste = uniao(p1,p2);
 	printf("\n");
 	imprime(teste);
