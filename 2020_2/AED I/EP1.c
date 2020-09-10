@@ -28,11 +28,11 @@ void adiciona(int x, NO* p){
 	}
 	pp->prox = novo;
 
-	printf("Adicionado %d em %d, anterior %d e prox como %d\n", x, novo, p, novo->prox);
-	imprime(p); printf("\n");
+	printf("Adicionado %d em %d, anterior %d e prox como %d\n", x, novo, pp, novo->prox);
 }
 
 NO* uniao(NO* p1, NO* p2){
+	printf("\n\n\n");
 	NO *p11 = p1;
 	NO *p22 = p2;
 
@@ -45,11 +45,11 @@ NO* uniao(NO* p1, NO* p2){
 	while(p11 != NULL && p22 != NULL){
 		// pular as repeticoes
 		while (p11->valor == p111->valor && p11->prox != NULL){
-			p11 = p111;
+			p11 = p11->prox;
 			p111 = p111->prox;
 		}
 		while (p22->valor == p222->valor && p22->prox != NULL){
-			p22 = p222;
+			p22 = p22->prox;
 			p222 = p222->prox;
 		}
 
@@ -68,8 +68,6 @@ NO* uniao(NO* p1, NO* p2){
 			p22 = p22->prox;
 		}
 	}
-
-	imprime(nuevo);
 	return nuevo;
 }
 
@@ -86,12 +84,10 @@ int main() {
 
 	adiciona(7, p1);
 	adiciona(9, p1);
-	imprime(p1);
 	adiciona(6, p2);
 	adiciona(8, p2);
-	imprime(p2);
 
 	NO* teste = uniao(p1,p2);
 	printf("\n");
-	//imprime(teste);
-}
+	imprime(teste);
+} 
