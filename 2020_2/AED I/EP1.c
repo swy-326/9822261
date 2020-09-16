@@ -2,78 +2,110 @@
 #include <stdlib.h>
 #include <malloc.h>
 
+
+// https://stackoverflow.com/questions/46697901/linked-list-initialize-head-with-function
+// 참고하기
+
+
 typedef struct estr {
-        int valor;
-        struct estr* prox;
+    int valor;
+    struct estr* prox;
 } NO;
 
-void imprime(NO *p){
-	NO * pp;
-	for (pp = p; pp != NULL; pp = pp->prox){
-		printf("%d %d %d\n",pp, pp->valor, pp->prox);
+void imprime(NO **ptrHead){
+	NO *atual = *ptrHead;
+
+	if(*ptrHead == NULL) printf("A lista esta vazia\n");
+	else{
+		while(atual){
+			printf("%d  ", atual->valor);
+			atual = atual->prox;
+		}
+		printf("\n");
 	}
+
 	printf("\n");
 }
 
-void adiciona(int x, NO* p){
-	NO *pp = p;
-	NO *novo = (NO*) malloc (sizeof(NO));
+void adiciona(int x, NO **head){
+	NO* atual;
+	NO* anterior;
+
+	NO* novo = (NO*)malloc(sizeof(NO));	
 	novo->valor = x;
 	novo->prox = NULL;
 
-	while(pp->prox){
-		pp = pp->prox;
+	if(*head == NULL) {
+		printf("\n\nprimeira vez\n");
+		*head = novo;
 	}
-	pp->prox = novo;
+	else {
+		anterior = NULL;
+		atual = *head;
+		while(atual){
+			anterior = atual;
+			atual = atual->prox;
+		}
+		anterior->prox = novo;
+	}
 
-	printf("Adicionado %d em %d, anterior %d e prox como %d\n", x, novo, pp, novo->prox);
+	printf("valor adicionado : %d\n", x);
 }
 
+NO* pulaRepeticao(NO *p){
+	int x = p->valor;
+	NO *pp = p;
+	NO *ant = NULL;
+
+	while(pp){
+		if (pp->valor == x){
+			ant = pp;
+			pp = pp->prox;
+		}
+		else break;
+	}
+
+	return ant;
+}
 
 NO* uniao(NO* p1, NO* p2){
-	printf("\n\n\n");
+
 	NO *p11 = p1;
 	NO *p22 = p2;
 
 	NO *p111 = p11->prox;
 	NO *p222 = p22->prox;
 
-	NO *nuevo = (NO*) malloc (sizeof(NO));
-
-	// se tamanho dos dois forem 0, return head
-	// se apenas um tamanho for zero, recorre ao caso embaixo
-	// se os dois forem nao vazia:
-
-	// primeira insercao
-	nuevo->prox = NULL;
+	NO *nuevo = NULL;
 
 	while(p11 && p22) {
-		// verificar e pular repeticoes
-
+		/* verificar e pular repeticoes*/
+		p11 = pulaRepeticao(p11);
+		p22 = pulaRepeticao(p22);
 
 		if (p11->valor < p22->valor){
-			adiciona(p11->valor, nuevo);
+			adiciona(p11->valor, &nuevo);
 			p11 = p11->prox;
 		}
 		else if (p11->valor == p22->valor){
-			adiciona(p11->valor, nuevo);
+			adiciona(p11->valor, &nuevo);
 			p11 = p11->prox;
 			p22 = p22->prox;
 		}
 		// if (p11->valor > p22->valor)
 		else {
-			adiciona(p22->valor, nuevo);
+			adiciona(p22->valor, &nuevo);
 			p22 = p22->prox;
 		}
 	}
 
 	// tem q verificar repeticao
 	while (p11){
-		adiciona(p11->valor, nuevo);
+		adiciona(p11->valor, &nuevo);
 		p11 = p11->prox;
 	}
 	while (p22){
-		adiciona(p22->valor, nuevo);
+		adiciona(p22->valor, &nuevo);
 		p22 = p22->prox;
 	}
 
@@ -83,21 +115,25 @@ NO* uniao(NO* p1, NO* p2){
 
 int main() {
 
-	NO* p1 = (NO *)malloc(sizeof(NO));
-	NO* p2 = (NO *)malloc(sizeof(NO));
+	NO* p1 = NULL;
+	NO* p2 = NULL;
 
-	p1->valor = 1;
-	p1->prox = NULL;
-	p2->valor = 2;
-	p2->prox = NULL;
+	adiciona(1, &p1);
+	adiciona(2, &p1);
+	adiciona(2, &p1);
+	adiciona(6, &p1);
+	adiciona(8, &p1);
+	adiciona(9, &p1);
 
-	adiciona(2, p2);
-	adiciona(2, p2);
-	adiciona(2, p2);
-	adiciona(8, p2);
+	adiciona(1, &p2);
+	adiciona(2, &p2);
+	adiciona(4, &p2);
+	adiciona(5, &p2);
+	adiciona(7, &p2);
+	adiciona(7, &p2);
+	adiciona(9, &p2);
 
- 
-	NO* teste = uniao(p1,p2);
-	printf("\n");
-	imprime(teste);
+	NO* teste = uniao(p1, p2);
+	imprime(&teste);
+
 }
