@@ -165,4 +165,4 @@ int main() {
 
 }
 
-// por favor nao inclua nenhum c�digo abaixo da fun��o main()
+// por favor nao inclua nenhum codigo abaixo da funcao main()
