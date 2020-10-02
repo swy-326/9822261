@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-class aa {
+class blocos {
 
     public static void main(String[] args) {
 
