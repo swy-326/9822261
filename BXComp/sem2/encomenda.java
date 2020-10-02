@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-class asa {
+class encomenda {
 
 
     public static void main(String[] args) {
