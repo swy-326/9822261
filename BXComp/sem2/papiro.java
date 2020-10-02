@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-class aaa {
+class papiro {
 
     public static void main(String[] args) {
 
