@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-class bx {
+class confissao {
 /*
 03 - 05, 07, 39
 04 - 14, 28
