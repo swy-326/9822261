@@ -1,3 +1,13 @@
+/*
+
+Dada uma lista ligada de elementos inteiros *p, escreva um algoritmo que retorne uma cópia invertida da lista utilizando uma pilha dinâmica como estrutura auxiliar. 
+ 
+Dica: use a função PUSH da apostila para empilhar, e depois use POP com a função de cópia do exercício anterior para obter a lista invertida.
+ 
+NO* copiaInvertida(NO* p) 
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -89,9 +99,7 @@ int main(){
 	}
 
 	imprime(head);
-	
 	imprime( copiaInvertida(head) );
-
 
 	return 0;
 }
