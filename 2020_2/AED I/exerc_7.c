@@ -74,6 +74,7 @@ void inserirFinal(LISTA* l, int ch){
 void inserirAntes(LISTA* l, int ch, NO* atual){
 
 	// achar posicao do atual
+        // 이거 필요 없음 이미 주소가 주어졌는데
 	NO* runner = l->head;
 	NO* anterior = runner;
 
