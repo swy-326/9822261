@@ -1,16 +1,14 @@
-// 2020-10-26
-
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 
-#define 0 false
-#define 1 true
+#define false 0
+#define true 1
 typedef int bool;
 
 // nome em vez de valor(true, false etc)
 typedef enum {
 	esquerda,
-	diretia
+	direita
 } direcao;
 
 typedef enum {
@@ -19,10 +17,10 @@ typedef enum {
 	aventura
 } categoria;
 
-typedef struct NO{
-	NO* pai, esq, dir;
+typedef struct NO {
+	struct NO *pai, *esq, *dir;
 	int chave;
-}
+};
 
 typedef struct {
 	NO* raiz;
@@ -87,12 +85,31 @@ bool inserirRaiz(Arvore* a, int chave){
 }
 
 
+void imprimirLista(NO* raiz){
+
+	if (!raiz) return;
+
+	// primeiro esq, benren, depois tudo que esta a direita
+	imprimirLista(raiz->esq);
+	printf("%d\n", raiz->chave);
+	imprimirLista(raiz->dir);
+}
+
 
 int main(){
 
 	Arvore a;
+	init(&a);
+	imprimirLista(a.raiz);
+
 	inserirRaiz(&a, 3);
+	imprimirLista(a.raiz);
+
+	inserir(&a, 1, 3, esquerda);
+	imprimirLista(a.raiz);
+
 	inserir(&a, 5, 3, direita);
+	imprimirLista(a.raiz);
 
 	return 0;
 }
