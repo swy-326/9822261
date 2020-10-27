@@ -226,14 +226,14 @@ float calcular(char* expressao, int* codigo){
 	}
 
 	if (tam != 1){ *codigo = -1; return -1; };
-	*codigo = 1;
+	//*codigo = 1;
 	return pilhaExpressao->valor;
 }
 
 
 int main() {
 	char exp[200];
-	strcpy(exp, "(0*(((1+(2*4))--6)/6))");
+	strcpy(exp, "(1/3)");
 
 	int codigo;
 
