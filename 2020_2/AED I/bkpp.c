@@ -26,11 +26,7 @@ typedef struct estrutura {
 
 
 
-
 // respctivas explicacoes estao acima de cada funcao
-void imprimir(NO** head);
-
-
 float calcular(char* expressao, int* codigo);
 void copia(char ch, NO** topoPilha);
 void push(NO* atual, NO** topoPilha);
@@ -41,19 +37,6 @@ int isNumber(NO** topoPilha);
 int isChar(NO** topoPilha);
 
 
-// apenas para teste
-void imprimir(NO** head){
-	NO* runner = *head;
-
-	printf("여기서부터 빠짐 : ");
-
-	while(runner){
-		if(runner->tipo == 1) printf(" %c ", runner->simbolo, runner);
-		else printf(" %f ", runner->valor, runner);
-		runner = runner->prox;
-	}
-	printf("\n");
-}
 
 
 // cria uma lista no a partir da expressao passado como string
@@ -102,8 +85,9 @@ void push(NO* atual, NO** topoPilha){
 	}
 }
 
-// retira o valor de float ou simbolo dependendo do seu tipo 
-// e libera memoria desse no
+
+/*  retira o valor de float ou simbolo dependendo do seu tipo 
+    e libera memoria desse no */
 void pop(NO** topoPilha, float* valor, char* op){
     NO* aux = *topoPilha;
 
@@ -118,8 +102,10 @@ void pop(NO** topoPilha, float* valor, char* op){
     free(aux);
 }
 
-// faz as operacoes de soma, subtracao, mult e divisao
-// caso haja divisao por 0, codigo eh atualizado para 0 
+
+/*  faz as operacoes de soma, subtracao, mult e divisao e retorna o resultado
+    caso haja divisao por 0, codigo eh atualizado para 0 
+    em casos em que a operacao eh um char, mas nao um operando valido, retorna erro de sintaxe */
 float calculaOperacao(float first, char op, float last, int** codigo){
 	switch(op){
 		case '+':
@@ -135,7 +121,7 @@ float calculaOperacao(float first, char op, float last, int** codigo){
 			return first * last;
 	
 		case '/':
-			if(last == 0){ (**codigo) = 0; return -1;}
+			if(last == 0){ (**codigo) = 0; return 0;}
 			(**codigo) = 1;
 			return first / last;
 
@@ -145,10 +131,11 @@ float calculaOperacao(float first, char op, float last, int** codigo){
 		}
 }
 
-// exclui ) e a expressao que foi calculada como 1+1)
-// e atualiza o prox de ( para o proximo de )
-// ex)   ( 1 + 2 ) / 9  ==> ( / 9
-// posteriormente em ( sera colocado o resultado da operacao
+
+/*  exclui ')' e a expressao que foi calculada : 1+1)
+    e atualiza o prox de '(' para o proximo de ')'
+        ex:   ( 1 + 2 ) / 9  ==> ( / 9
+    posteriormente o '(' sera atualizado para o resultado da operacao */
 void excluiExpressao(NO** qian4, NO** qian3, NO** qian2, NO** qian1, NO** qian){
     NO* inicio = *qian4;
     NO* final = *qian;
@@ -159,19 +146,23 @@ void excluiExpressao(NO** qian4, NO** qian3, NO** qian2, NO** qian1, NO** qian){
     free(final);
 }
 
-// usado antes de pop, para verificar se o valor contido em NO eh numero
+
+/*  usado antes de pop, para verificar se o valor contido em NO eh numero
+    retorna 0, se eh numero; caso contrario retorna -1 */
 int isNumber(NO** topoPilha){
 	if((*topoPilha)->tipo == 2) return 0;
 	else return -1;
 }
 
-// usado antes de pop, para verificar se o valor contido em NO eh char
+/*  usado antes de pop, para verificar se o valor contido em NO eh char
+    retorna 0, se eh char; caso contrario retorna -1 */
 int isChar(NO** topoPilha){
 	if((*topoPilha)->tipo == 1) return 0;
 	else return -1;
 }
 
-// funcao principal para calcular a expressao dada
+
+// funcao principal (retorna float e int)
 float calcular(char* expressao, int* codigo){
 
     int tam = 0; int i; int esq = 0, dir = 0, num = 0; *codigo = 1;
@@ -182,6 +173,7 @@ float calcular(char* expressao, int* codigo){
 
         a quantidade minima de string deve ser 5 para ser sintaticamente correta
         deve haver mesma quantidade de '(' e ')'
+        tambem, como sao apenas numeros de 1 digitos, a qnt de char numeros deve ser um a mais que parentesis
         alem disso, deve comecar com '(' e terminar com ')'
     */
 	while(expressao[tam] != '\0'){
@@ -209,7 +201,7 @@ float calcular(char* expressao, int* codigo){
 	NO* tempCalculo = NULL;
 
 	// ate sobrar apenas um numero 
-	while(tam > 2){
+	while(tam > 1){
 
 		NO* runner1 = pilhaExpressao;
 
@@ -225,15 +217,14 @@ float calcular(char* expressao, int* codigo){
 		}
         qian = runner1;
 		runner1 = runner1->prox;
-        imprimir(&pilhaExpressao);
 
 
         // exclui as tres nos do meio
 		excluiExpressao(&qian4, &qian3, &qian2, &qian1, &qian);
 
-		// se eh numero ou char, faz o pop
-        // se nao retorna qualquer valor com codigo -1 
-        // (divisao por zero eh verificado posteriormente, portanto aqui sempre eh erro de sintaxe)
+		/*  se eh numero ou char, faz o pop
+            se nao retorna qualquer valor com codigo -1 
+            divisao por zero eh verificado posteriormente, portanto aqui sempre eh erro de sintaxe */
 		float last, first, lixo; char op = '=';
         
         if ( isNumber(&tempCalculo) == 0 ) pop(&tempCalculo, &last, &op);
@@ -248,8 +239,8 @@ float calcular(char* expressao, int* codigo){
 		if ( (*codigo) != 1 ) return -1;
 
 
-		// se o calculo deu errado devido ao erro de sintaxe
-		// ou por divisao por zero, devolve qq valor
+		/*  se o calculo deu errado devido ao erro de sintaxe
+		    ou por divisao por zero, devolve qq valor */
 		float novoValor = calculaOperacao(first, op, last, &codigo);
 		if ( *codigo != 1 ) return -1;
 
@@ -258,7 +249,6 @@ float calcular(char* expressao, int* codigo){
         if (qian4->tipo == 1 && qian4->simbolo == '('){
             qian4->tipo = 2;
             qian4->valor = novoValor;
-            printf("aqui?\n");
         } else {
             *codigo = -1;
             return -1;
@@ -276,9 +266,7 @@ float calcular(char* expressao, int* codigo){
 
 
 
-//----------------------------------------------------------------
-// use main() apenas para fazer chamadas de teste ao seu programa
-//----------------------------------------------------------------
+
 int main() {
 
     char testes[14][200] = {
