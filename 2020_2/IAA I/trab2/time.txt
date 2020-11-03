@@ -1,6 +1,6 @@
 Tempo de execucao = media de, em total 2500 execucoes, com 50 repeticoes
 
-Iterativa
+Binary Iterativa
 
     vetor5.txt : 
         50 execucoes com 50 vetores : 268ns
@@ -21,7 +21,7 @@ Iterativa
 	stackoverflow
 
 
-Recursiva
+Binary Recursiva
 
     vetor5.txt
         50 execucoes com 50 vetores : 371ns
@@ -41,3 +41,44 @@ Recursiva
         50 execucoes com 50 vetores : 10925032ns
 	stackoverflow
         
+
+
+
+Iterativa
+
+    vetor5.txt
+        50 execucoes com 50 vetores : 168ns
+    vetor10.txt
+        50 execucoes com 50 vetores : 287ns
+    vetor50.txt
+        50 execucoes com 50 vetores : 1705ns
+    vetor100.txt
+        50 execucoes com 50 vetores : 4269ns
+    vetor500.txt
+        50 execucoes com 50 vetores : 71171ns
+    vetor1000.txt   
+        50 execucoes com 50 vetores : 260166ns
+    vetor5000.txt
+        50 execucoes com 50 vetores : 6292384ns
+    vetor10000.txt
+        50 execucoes com 50 vetores : 24619890ns
+
+
+Recursiva
+
+    vetor5.txt
+        50 execucoes com 50 vetores : 164ns
+    vetor10.txt
+        50 execucoes com 50 vetores : 292ns
+    vetor50.txt
+        50 execucoes com 50 vetores : 1757ns
+    vetor100.txt
+        50 execucoes com 50 vetores : 3585ns
+    vetor500.txt
+        50 execucoes com 50 vetores : 57469ns
+    vetor1000.txt   
+        50 execucoes com 50 vetores : 183982ns
+    vetor5000.txt
+        50 execucoes com 50 vetores : 4286619ns
+    vetor10000.txt
+        50 execucoes com 50 vetores : 16921616ns
