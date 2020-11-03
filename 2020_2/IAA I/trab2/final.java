@@ -132,11 +132,16 @@ public class test {
 						vetor[i] = temp;
 					}
 
-					// extrai quantidade de vetor a partir do nome
+					// extrai quantidade de vetor a partir do nome do arquivo
 					String quantidade = fileName.replaceAll("\\D+", "");
 					int qntde = Integer.parseInt(quantidade);
 
-					// ordena e calcula o tempo
+					/* ordena e calcula o tempo
+						1-binary insertion sort interativa
+						2-binary insertion sort recursiva
+						3-insertion sort iterativa
+						4-insertion sort recursiva
+					*/
 					if(opcao == 1){
 						startTime = System.nanoTime();
 						BinaryInsertionSort(vetor, qntde);
@@ -161,12 +166,11 @@ public class test {
 						endTime = System.nanoTime();						
 					}
 
-					// tempo de uma linha de txt
+					// temp gasto para um vetor (uma linha)
 					timeElapsed = endTime - startTime;
-					//System.out.printf("Tempo individual : %dns\n", timeElapsed);
 
-					imprimir(vetor, qntde);
-					System.out.println();System.out.println();System.out.println();
+					System.out.printf("Tempo individual : %dns\n", timeElapsed);
+					imprimir(vetor, qntde); System.out.println();System.out.println();System.out.println();
 
 					// tempo de todos 50 vetores de txt
 					timeTotal += timeElapsed;
@@ -180,7 +184,7 @@ public class test {
 
 			timeTotal /= 50;
 			timeFinal += timeTotal;
-			System.out.printf("Tempo media de %dvez : %dns\n", k, timeTotal);
+			System.out.printf("Tempo media de %da vez : %dns\n", k+1, timeTotal);
 		}
 
 		System.out.println("50 execucoes com 50 vetores : " + timeFinal/50 + "ns");
@@ -194,8 +198,11 @@ public class test {
 
 
 		Scanner sc = new Scanner(System.in);
-
 		int opcao = -1;
+		
+		System.out.printf("\n========== Aviso ==========\n");
+		System.out.printf("O programa imprime os vetores toda vez que eh ordenado, podendo sobrecarregar o processador. Para evitar, apague a linha 173 do codigo\n");
+		System.out.printf("========== Aviso ==========\n\n");
 		System.out.print("Digite: \n '1' para ordenacao bianria iterativa\n '2' para ordenacao binaria recursiva\n '3' para ordenacao iterativa\n '4' para ordenacao recursiva\n '0' para sair do programa\n");
 
 		
