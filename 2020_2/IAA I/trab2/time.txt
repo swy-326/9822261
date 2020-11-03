@@ -3,40 +3,41 @@ Tempo de execucao = media de, em total 2500 execucoes, com 50 repeticoes
 Iterativa
 
     vetor5.txt : 
-        50 execucoes com 50 vetores : 6139ns
+        50 execucoes com 50 vetores : 268ns
     vetor10.txt
-        50 execucoes com 50 vetores : 6149ns
+        50 execucoes com 50 vetores : 462ns
     vetor50.txt
-        50 execucoes com 50 vetores : 4596ns
+        50 execucoes com 50 vetores : 3414ns
     vetor100.txt
-        50 execucoes com 50 vetores : 10876ns
+        50 execucoes com 50 vetores : 7562ns
     vetor500.txt
-        50 execucoes com 50 vetores : 97455ns
+        50 execucoes com 50 vetores : 61296ns
     vetor1000.txt
-        50 execucoes com 50 vetores : 323094ns
+        50 execucoes com 50 vetores : 189077ns
     vetor5000.txt
-        50 execucoes com 50 vetores : 5819912ns
+        50 execucoes com 50 vetores : 3056671ns
     vetor10000.txt
-        50 execucoes com 50 vetores : 22125624ns
-
+        50 execucoes com 50 vetores : 12501841ns
+	stackoverflow
 
 
 Recursiva
 
     vetor5.txt
-        50 execucoes com 50 vetores : 691ns
+        50 execucoes com 50 vetores : 371ns
     vetor10.txt
-        50 execucoes com 50 vetores : 404ns
+        50 execucoes com 50 vetores : 480ns
     vetor50.txt
-        50 execucoes com 50 vetores : 15690ns
+        50 execucoes com 50 vetores : 4126ns
     vetor100.txt
-        50 execucoes com 50 vetores : 21157ns
+        50 execucoes com 50 vetores : 7730ns
     vetor500.txt
-        50 execucoes com 50 vetores : 347403ns
+        50 execucoes com 50 vetores : 64478ns
     vetor1000.txt   
-        50 execucoes com 50 vetores : 1579271ns
+        50 execucoes com 50 vetores : 178519ns
     vetor5000.txt
-        50 execucoes com 50 vetores : 47777263ns
+        50 execucoes com 50 vetores : 2851837ns
     vetor10000.txt
-        50 execucoes com 50 vetores : 187363532ns
-        (aprox. 8min at total)
+        50 execucoes com 50 vetores : 10925032ns
+	stackoverflow
+        
