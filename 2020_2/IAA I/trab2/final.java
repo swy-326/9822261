@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 public class test {
 
-
 	public static int BinarySearch(double arr[], double valor, int inf, int sup){
 		int mid;
 
@@ -169,8 +168,8 @@ public class test {
 					// temp gasto para um vetor (uma linha)
 					timeElapsed = endTime - startTime;
 
-					System.out.printf("Tempo individual : %dns\n", timeElapsed);
-					imprimir(vetor, qntde); System.out.println();System.out.println();System.out.println();
+					//System.out.printf("Tempo individual : %dns\n", timeElapsed);
+					//imprimir(vetor, qntde); System.out.println();System.out.println();System.out.println();
 
 					// tempo de todos 50 vetores de txt
 					timeTotal += timeElapsed;
@@ -202,8 +201,8 @@ public class test {
 
 		System.out.printf("\n========== Aviso ==========\n");
 		System.out.printf("O programa imprime os vetores toda vez que eh ordenado, podendo sobrecarregar o processador. Para evitar, apague a linha 173 do codigo\n");
-		System.out.printf("========== Aviso ==========\n\n");
-		System.out.print("Digite: \n '1' para ordenacao bianria iterativa\n '2' para ordenacao binaria recursiva\n '3' para ordenacao iterativa\n '4' para ordenacao recursiva\n '0' para sair do programa\n");
+		System.out.printf("========== Aviso ==========\n\n]n");
+		System.out.printf("Digite: \n '1' para ordenacao bianria iterativa\n '2' para ordenacao binaria recursiva\n '3' para ordenacao iterativa\n '4' para ordenacao recursiva\n '5' para sair do programa\n");
 
 		
 		do {
