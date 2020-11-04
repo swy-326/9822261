@@ -187,7 +187,7 @@ public class test {
 			System.out.printf("Tempo media de %da vez : %dns\n", k+1, timeTotal);
 		}
 
-		System.out.println("50 execucoes com 50 vetores : " + timeFinal/50 + "ns");
+		System.out.println("Tempo media de 50 execucoes : " + timeFinal/50 + "ns");
 	}
 
 
@@ -199,7 +199,7 @@ public class test {
 
 		Scanner sc = new Scanner(System.in);
 		int opcao = -1;
-		
+
 		System.out.printf("\n========== Aviso ==========\n");
 		System.out.printf("O programa imprime os vetores toda vez que eh ordenado, podendo sobrecarregar o processador. Para evitar, apague a linha 173 do codigo\n");
 		System.out.printf("========== Aviso ==========\n\n");
@@ -220,7 +220,7 @@ public class test {
 				System.out.printf("\n");
 			}
 
-			else if (opcao == 0){
+			else if (opcao == 5){
 				System.exit(0);
 			}
 
@@ -228,7 +228,7 @@ public class test {
 				System.out.println("Opcao invalida, digite novamente");
 			}
 
-		} while (opcao != 0);
+		} while (opcao != 5);
 
 
 
