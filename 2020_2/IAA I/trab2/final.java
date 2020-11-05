@@ -81,11 +81,11 @@ public class test {
 	public static void InsertionSortR(double arr[], int tam){
 		int i; double chave;
 
-		if (tam > 1){
+		if (tam > 0){
 			InsertionSortR(arr, tam-1);
-			chave = arr[tam-1];
+			chave = arr[tam];
 
-			for(i = tam-2; i >= 0 && arr[i] > chave; i--){
+			for(i = tam-1; i >= 0 && arr[i] > chave; i--){
 				arr[i+1] = arr[i];
 			}
 			arr[i+1] = chave;
@@ -161,15 +161,16 @@ public class test {
 
 					else if (opcao == 4){
 						startTime = System.nanoTime();						
-						InsertionSortR(vetor, qntde);
+						InsertionSortR(vetor, qntde-1);
 						endTime = System.nanoTime();						
 					}
+
 
 					// temp gasto para um vetor (uma linha)
 					timeElapsed = endTime - startTime;
 
 					//System.out.printf("Tempo individual : %dns\n", timeElapsed);
-					//imprimir(vetor, qntde); System.out.println();System.out.println();System.out.println();
+					imprimir(vetor, qntde); System.out.println();System.out.println();System.out.println();
 
 					// tempo de todos 50 vetores de txt
 					timeTotal += timeElapsed;
@@ -200,7 +201,7 @@ public class test {
 		int opcao = -1;
 
 		System.out.printf("\n========== Aviso ==========\n");
-		System.out.printf("O programa imprime os vetores toda vez que eh ordenado, podendo sobrecarregar o processador. Para evitar, apague a linha 173 do codigo\n");
+		System.out.printf("O programa imprime os vetores toda vez que eh ordenado, podendo sobrecarregar o processador. Para evitar, apague a linha 172 do codigo\n");
 		System.out.printf("========== Aviso ==========\n\n]n");
 		System.out.printf("Digite: \n '1' para ordenacao bianria iterativa\n '2' para ordenacao binaria recursiva\n '3' para ordenacao iterativa\n '4' para ordenacao recursiva\n '5' para sair do programa\n");
 
