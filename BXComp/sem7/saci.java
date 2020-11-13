@@ -1,3 +1,8 @@
+/*
+tinha feito com long, mas perdi o codigo
+*/
+
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
