@@ -1,0 +1,103 @@
+package BX.ultimsem;
+
+import java.util.Scanner;
+
+public class arvre {
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+
+        int n = scan.nextInt();
+
+        for (int c = 0; c < n; c++) {
+
+            boolean primo = true, nump = true;
+            int qntp = 0;
+
+            int num = scan.nextInt();
+
+            if(num <= 2){
+                nump = false;
+            }
+            for(int k = 2; k < num; k++){
+                if(num%k == 0 && k != num){
+                    nump = false;
+                }
+            }
+
+            for(int i = 2; i < num; i++){
+                primo = true;
+                for(int k = 2; k < i; k++){
+                    if(num%k == 0 && k != i){
+                        primo = false;
+                    }
+                }
+                if(primo){
+                    qntp++;
+                }
+            }
+
+            int ma, di, te = 0;
+
+            if(num == 2){
+                te = 0;
+            } else if(nump) {
+                di = qntp / 2;
+                ma = (int) Math.pow(2, di - 1);
+                ma /= 2;
+                te = (int) (Math.log(ma) / Math.log(2));
+                //te++;
+            }
+
+            //2 3 5 7 11 13 17
+            //7
+            //7 / 2 = 3
+            //2^3 = 8
+            //8/2 = 4
+            // log2 4 = 2
+
+
+            if(num == 2){
+                te = 0;
+            }
+            if(num == 3){
+                te = 1;
+            }
+
+            if(!nump) {
+                System.out.println("Viajou, Ipi? Aqui tem essa fruta nao");
+            }
+            else{
+                System.out.println("Ipi pegou jenipapo do galho " + te);
+            }
+        }
+    }
+}
+
+/*
+10
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+ */
+
+/*
+Viajou, Ipi? Aqui tem essa fruta nao
+Viajou, Ipi? Aqui tem essa fruta nao
+Ipi pegou jenipapo do galho 0
+Ipi pegou jenipapo do galho 1
+Viajou, Ipi? Aqui tem essa fruta nao
+Ipi pegou jenipapo do galho 1
+Viajou, Ipi? Aqui tem essa fruta nao
+Ipi pegou jenipapo do galho 2
+Viajou, Ipi? Aqui tem essa fruta nao
+Viajou, Ipi? Aqui tem essa fruta nao
+ */
