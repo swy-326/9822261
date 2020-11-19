@@ -85,8 +85,13 @@ int main(){
 #include <stdbool.h>
 #include <string.h>
 
+
+// Sungwon Yoon
+
 void swap(char* a, char* b){
+
 	char temp;
+
 	temp = *a;
 	*a = *b;
 	*b = temp;
@@ -94,6 +99,7 @@ void swap(char* a, char* b){
 
 
 void insertionSort(char* arr, int tam){
+
 	int i, j;
 	char chave;
 
@@ -108,24 +114,23 @@ void insertionSort(char* arr, int tam){
 
 
 void permutacao(char* str, int n){
+
 	int i, j;
 
 	if (strlen(str) == n) printf("%s\n", str);
 
 	for(i = n; i < strlen(str); i++){
+	if (i > strlen(str) || str[i] != str[i+1]){
 
-	if (i >= strlen(str)-1 || str[i] != str[i+1]){
 		swap(&str[i], &str[n]);
 
-		for(j = n+1; j <= i; j++){
+		for(j = n+1; j <= i; j++)
 			if(str[j] > str[i]) swap(&str[j], &str[i]);
-		}
 
 		permutacao(str, n+1);
 
-		for(j = i; j >= n+1; j--){
+		for(j = i; j >= n+1; j--)
 			if(str[j] < str[i]) swap(&str[j], &str[i]);
-		}
 
 		swap(&str[i], &str[n]);
 
@@ -150,7 +155,6 @@ int main(){
 
 	return 0;
 }
-
 
 
 
