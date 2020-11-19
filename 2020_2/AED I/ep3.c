@@ -28,18 +28,20 @@ NO* acharNo(NO* raiz, int valor);
 NO* menorChave(NO* p);
 NO* maiorChave(NO* p);
 void exlcuirNo(NO** raiz, NO* errado);
-NO* ehValido(NO* *raiz);
+NO* ehValido(NO* *raiz, NO* *queueue);
 void printInOrder(NO* raiz);
 void organizar(NO* *raiz);
+int altura(NO* p);
 
 
 
-
+// inicializa a arvore
 void inicializarArvore(NO* *raiz){
 	*raiz = NULL;
 }
 
 
+// inserir novo no
 NO* inserirNo(NO* *raiz, int ch){
 	NO* pai;
 	NO* atual;
@@ -75,7 +77,8 @@ NO* inserirNo(NO* *raiz, int ch){
 	return novo;
 }
 
-// Inserção de um nó em árvore comum (sem ordem) esq:pos=1 dir:pos=2 
+
+// Iserir no dado a posicao do pai ( esq=1   dir=2 )
 NO* inserirDadoPai(NO* *raiz, NO* pai, int ch, int pos) {
 	NO* novo;
 	novo = (NO *) malloc(sizeof(NO));
@@ -90,6 +93,7 @@ NO* inserirDadoPai(NO* *raiz, NO* pai, int ch, int pos) {
 }
 
 
+// imprimir horizontal
 void imprimirArvore(NO* p, int d){
 	int i;
 	if(p) {
@@ -101,7 +105,17 @@ void imprimirArvore(NO* p, int d){
 }
 
 
-// raiz sempre eh != NULL
+// imprimir crescente
+void printInOrder(NO* raiz){
+	if(raiz != NULL){
+		printInOrder(raiz->esq);
+		printf("%d  ", raiz->chave);
+		printInOrder(raiz->dir);
+	}
+}
+
+
+// achar pai, raiz sempre eh != NULL
 NO* acharpai(NO* raiz, int valor){
 
 	NO* p = raiz;
@@ -118,7 +132,7 @@ NO* acharpai(NO* raiz, int valor){
 }
 
 
-// usado apenas para testes
+// achar o endereco, dado a chave
 NO* acharNo(NO* raiz, int valor){
 
 	NO* p = raiz;
@@ -131,6 +145,7 @@ NO* acharNo(NO* raiz, int valor){
 }
 
 
+// achar menor valor da (sub)arvore
 NO* menorChave(NO* p){
 
 	while (p->esq != NULL) p = p->esq;
@@ -139,6 +154,7 @@ NO* menorChave(NO* p){
 }
 
 
+// achar maior valor da (sub)arvore
 NO* maiorChave(NO* p){
 
 	while (p->dir != NULL) p = p->dir;
@@ -147,10 +163,11 @@ NO* maiorChave(NO* p){
 }
 
 
+// excluir no
 void exlcuirNo(NO** raiz, NO* errado){
 
 	int chaveErrado = errado->chave;
-	printf("chave a ser excluido :  %d\n", chaveErrado);
+	printf("\n\n\nchave a ser excluido :  %d\n", chaveErrado);
 	NO* pai = NULL;
 
 	// no errado nao tem filhos
@@ -251,7 +268,7 @@ void exlcuirNo(NO** raiz, NO* errado){
 			}
 			else {
 				printf("esta lejo");
-			//	paiDoMenorValor->esq = NULL;
+				paiDoMenorValor->esq = NULL;
 	
 				(*raiz) = menorValor;
 
@@ -268,43 +285,146 @@ void exlcuirNo(NO** raiz, NO* errado){
 
 }
 
+/*
 
-// retorna o endereco do no errado
-NO* ehValido(NO* *raiz){
+int altura(NO* p){
+
+	if(p == NULL) return 0;
+
+	return altura(p->esq) > altura(p->dir) ? altura(p->esq)+1 : altura(p->dir)+1;
+}
+
+
+void exibirFolhas(NO* p, NO** folha){
+	if(p) {
+		if(p->esq == NULL && p->dir == NULL) *folha = p;
+		exibirFolhas(p->esq);
+		exibirFolhas(p->dir);
+	}
+}
+
+
+void buscarPenultimoNivel(NO* atual, NO* pilhas){
+
+	NO* esquerda = atual->esq;
+	NO* direita = atual->dir;
+
+	if ( ! (esquerda == NULL && direita == NULL)  ){
+		empilhar(&pilhas, atual);
+	}
+	buscarPenultimoNivel(esquerda);
+	buscarPenultimoNivel(direita);
+
+}
+
+
+int ehValido1(NO* *raiz, NO* devolver){
+
+	NO* pilhas = NULL;
+
+	while(pilhas){
+		printf("%d ", pilhas->chave);
+		pilhas = pilhas->dir;
+	}
+
+	NO* esquerda = atual->esq;
+	NO* direita = atual->dir;
+	if ( ! (esquerda == NULL && direita == NULL) ){
+		printf("e");
+	}
+
+
+	// buscar penultimo nivel <- vem de outra funcao
+	// 		ver se ele eh valido min/max
+	//			se errado, atualiza devolver
+	// 		se eh valido, recursive(acharPai(p))
+	// 		condicao de parada : se chegar no raiz
+	// compara o nivel com o anterior penultimo
+
+}
+
+
+// versao nova
+int ehValido2(NO* *raiz){
+
+	NO* p = (*raiz);
+	int min, max;
+
+	// se eh menor que min ou maior que max, eh errado
+	if ( !(p < max && p > min) ) return p;
+
+	else{
+		ehValido( acharpai(p) );
+	}
+
+	if ( (*raiz)->esq && (*raiz)->dir ){
+		min = ehValido(&(*raiz)->esq);
+		max = ehValido(&(*raiz)->dir);
+	}
+
+}
+
+*/
+
+
+// esq = ponteiro guardado
+// dir = proximo do queue
+// false queue
+void montarQueue(NO* *queueue, NO* atual){
+
+
+	if ((*queueue) == NULL) {
+		printf("adicionado a queue : %d\n", atual->chave);
+		NO* novo = (NO*) malloc (sizeof(NO));
+		novo->esq = atual;
+		novo->dir = NULL;
+		(*queueue) = novo; 
+	}
+
+}
+
+
+// codigo copiado
+NO* ehValido(NO* *raiz, NO* *queueue){
 
 	NO* p = (*raiz);
 	
 	if ( p == NULL ) return NULL;
 
-	if ( p->esq != NULL && (maiorChave(p->esq))->chave > p->chave ) return p;
-	if ( p->dir != NULL && (menorChave(p->dir))->chave < p->chave ) return p;
+	if ( p->esq != NULL && (maiorChave(p->esq))->chave > p->chave ){ 
+		printf("erro1 : %d\n", p->chave);
+		montarQueue(queueue, p);
+		return p;
+	}
 
-	if ( !ehValido(&(p->esq)) || !ehValido(&(p->dir)) ) return p;
+	if ( p->dir != NULL && (menorChave(p->dir))->chave < p->chave ) {
+		printf("erro2 : %d\n", p->chave);
+		montarQueue(queueue, p);
+		return p;
+	}
+
+	if ( ehValido(&(p->esq), queueue) || ehValido(&(p->dir), queueue) ) {
+		printf("erro3 : %d\n", p->chave);
+		montarQueue(queueue, p);
+		return p;
+	}
 
 	return NULL;
+
 }
 
 
-void printInOrder(NO* raiz){
-	if(raiz != NULL){
-		printInOrder(raiz->esq);
-		printf("%d  ", raiz->chave);
-		printInOrder(raiz->dir);
-	}
-	
-}
-
-
-// arvore com apenas dois elementos
+// falta tratar arvore com apenas dois elementos
 void organizar(NO* *raiz) {
 
 	if( (*raiz) != NULL ){
 
-		NO* temp = ehValido(raiz);
+		NO* queueue = NULL;
+
+		NO* temp = ehValido(raiz, &queueue);
 		if (temp != NULL){ 
-			printf("no errado : %d\n\n\n", temp->chave);
-			NO* noAExcluir = acharNo(*raiz, temp->chave);
-			exlcuirNo(raiz, noAExcluir);
+			//NO* noAExcluir = acharNo(*raiz, (queueue)->esq->chave);
+			exlcuirNo(raiz, queueue->esq);
 		}
 		else printf("correto\n");
 
@@ -320,55 +440,74 @@ int main() {
 
 	NO* arv = NULL;
 
-	NO* ershiyi = inserirNo(&arv, 21);
-	NO* yi = inserirDadoPai(&arv, ershiyi, 1, 2);
-	NO* wushi = inserirDadoPai(&arv, ershiyi, 9, 1);
+	NO* sanshi = inserirNo(&arv, 30);
 
+	NO* san = inserirDadoPai(&arv, sanshi, 7, 1);
+	NO* wu = inserirDadoPai(&arv, san, 5, 1);
+	NO* ershiwu = inserirDadoPai(&arv, san, 6, 2);
+	NO* shijiu = inserirDadoPai(&arv, ershiwu, 19, 1);
+	NO* ershier = inserirDadoPai(&arv, ershiwu, 22, 2);
+	NO* shiba = inserirDadoPai(&arv, shijiu, 18, 1);
 
-
-/*
-	NO* ershiyi = inserirNo(&arv, 21);
-	NO* ershi = inserirNo(&arv, 20);
-	NO* liushi = inserirNo(&arv, 60);
-
-	NO* wu = inserirDadoPai(&arv, ershi, 5, 1);
-	NO* sanshiwu = inserirDadoPai(&arv, ershi, 35, 2);
-	NO* ershier = inserirDadoPai(&arv, sanshiwu, 22, 1);
-
+	NO* liushi = inserirDadoPai(&arv, sanshi, 60, 2);
 	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
-	NO* bai = inserirDadoPai(&arv, liushi, 100, 2);
-	NO* yibaiyi = inserirDadoPai(&arv, bai, 101, 2);
+	NO* yibai = inserirDadoPai(&arv, liushi, 100, 2);
+	NO* yibaiyi = inserirDadoPai(&arv, yibai, 101, 2);
+
+/*
+	NO* sanshi = inserirNo(&arv, 30);
+
+	NO* ershi = inserirDadoPai(&arv, sanshi, 29, 1);
+
+	NO* bashijiu = inserirDadoPai(&arv, sanshi, 21, 2);
+	NO* sanshier = inserirDadoPai(&arv, bashijiu, 90, 2);
+*/
+
+/*
+	NO* sanshi = inserirNo(&arv, 30);
+
+	NO* ershi = inserirDadoPai(&arv, sanshi, 20, 1);
+
+	NO* bashijiu = inserirDadoPai(&arv, ershi, 89, 2);
+	NO* sanshier = inserirDadoPai(&arv, bashijiu, 32, 2);
 
 */
 
 /*
-	inserirNo(&arv, 50);
-	inserirNo(&arv, 17);
-	inserirNo(&arv, 72);
-	inserirNo(&arv, 12);
-	inserirNo(&arv, 23);
-	inserirNo(&arv, 54);
-	inserirNo(&arv, 76);
-	inserirNo(&arv, 14);
-	inserirNo(&arv, 53);
-	inserirNo(&arv, 100);
-	inserirDadoPai(&arv, 100, 102, 1);
+	NO* sanshi = inserirNo(&arv, 30);
+
+	NO* ershi = inserirDadoPai(&arv, sanshi, 20, 1);
+	NO* wu = inserirDadoPai(&arv, ershi, 5, 1);
+	NO* ershiwu = inserirDadoPai(&arv, ershi, 35, 2);
+	NO* ershier = inserirDadoPai(&arv, ershiwu, 22, 2);
+
+	NO* liushi = inserirDadoPai(&arv, sanshi, 60, 2);
+	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
+	NO* yibai = inserirDadoPai(&arv, liushi, 100, 2);
+	NO* yibaiyi = inserirDadoPai(&arv, yibai, 101, 2);
 */
+
+/*
+	NO* sanshi = inserirNo(&arv, 30);
+
+	NO* san = inserirDadoPai(&arv, sanshi, 3, 1);
+	NO* wu = inserirDadoPai(&arv, san, 5, 1);
+	NO* ershiwu = inserirDadoPai(&arv, san, 25, 2);
+	NO* shijiu = inserirDadoPai(&arv, ershiwu, 19, 1);
+	NO* ershier = inserirDadoPai(&arv, ershiwu, 22, 2);
+	NO* shiba = inserirDadoPai(&arv, shijiu, 18, 1);
+
+	NO* liushi = inserirDadoPai(&arv, sanshi, 60, 2);
+	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
+	NO* yibai = inserirDadoPai(&arv, liushi, 100, 2);
+	NO* yibaiyi = inserirDadoPai(&arv, yibai, 101, 2);
+*/
+
+
 
 	imprimirArvore(arv, 0);
-
-
-	//printf("\n==============\n\n\n");
-	//printInOrder(arv);
-
 	organizar(&arv);
-
 
 	printf("\n\n\n\n");
 	imprimirArvore(arv, 0);
-
-
-	// serao realizadas chamadas como esta:
-	// organizar(&arv);
-
 }
