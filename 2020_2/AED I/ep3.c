@@ -108,21 +108,13 @@ NO* acharNo(NO* raiz, int valor){
 
 NO* menorChave(NO* p){
 
-	if(p){
-
-		if (p->esq == NULL && p->dir == NULL) return p;
-
-		NO* esquerda = menorChave(p->esq);
-		NO* direita = menorChave(p->dir);
-
-		return (esquerda->chave < direita->chave) ? esquerda : direita;
-
-	}
+	while (p->esq != NULL) p = p->esq;
+	return p;
 
 }
 
 
-void exlcuirNo(NO* raiz, NO* errado){
+void exlcuirNo(NO** raiz, NO* errado){
 
 	int chaveErrado = errado->chave;
 	printf("chave a ser excluido :  %d\n", chaveErrado);
@@ -131,48 +123,82 @@ void exlcuirNo(NO* raiz, NO* errado){
 	// no errado nao tem filhos
 	if ( errado->esq == NULL && errado->dir == NULL ){
 		printf("case : nao tem filhos\n");
-		pai = acharpai(raiz, chaveErrado);
-		printf("achou o pai %d\n", pai->chave);
+
+		if (errado != *raiz) {
+			pai = acharpai(*raiz, chaveErrado);
 		
-		if (pai->esq == errado) pai->esq = NULL;
-		else if (pai->dir == errado) pai->dir = NULL;
+			if (pai->esq == errado) pai->esq = NULL;
+			else if (pai->dir == errado) pai->dir = NULL;
+		}
+		else (*raiz) = NULL;
 
 		free(errado);
 	}
 
 	// no errado so tem filho esquerdo
-	else if ( errado->esq == NULL && errado->dir != NULL ) {
+	else if ( errado->esq != NULL && errado->dir == NULL ) {
 		printf("case : apenas filho esquerdo");
-		pai = acharpai(raiz, chaveErrado);
 
-		if (pai->esq == errado) pai->esq = errado->esq;
-		else if (pai->dir == errado) pai->dir = errado->esq;
+		if (errado != (*raiz)){
+			pai = acharpai(*raiz, chaveErrado);
+
+			if (pai->esq == errado) pai->esq = errado->esq;
+			else if (pai->dir == errado) pai->dir = errado->esq;
+		}
+
+		else (*raiz) = errado->esq;
 
 		free(errado);
 	}
 
 	// no errado so tem filho direito
-	else if ( errado->esq != NULL && errado->dir == NULL ){
+	else if ( errado->esq == NULL && errado->dir != NULL ){
 		printf("case : apenas filho direito");
-		pai = acharpai(raiz, chaveErrado);
 
-		if (pai->esq == errado) pai->esq = errado->dir;
-		else if (pai->dir == errado) pai->dir = errado->dir;
+		if (errado != (*raiz)){
+			pai = acharpai(*raiz, chaveErrado);
+
+			if (pai->esq == errado) pai->esq = errado->dir;
+			else if (pai->dir == errado) pai->dir = errado->dir;
+		}
+		else (*raiz) = errado->dir;
+
+
+		if (errado == *raiz) *raiz = pai;
 
 		free(errado);		
 	}
 
 	// tem ambos os filhos direito e esquerdo
 	else {
-		printf("case : ambos os filhos");
+		printf("case : ambos os filhos\n");
 
+		// procura o menor valor e pai do errado
 		NO* menorValor = menorChave(errado->dir);
-		NO* paiDoMenorValor = acharpai(raiz, menorValor->chave);
-		paiDoMenorValor->esq = NULL;
+		NO* paiDoErrado = acharpai(*raiz, errado->chave);
+		printf("menor valor : %d\n", menorValor->chave);
 
-		NO* paiDoErrado = acharpai(raiz, errado->chave);
-		paiDoErrado->dir = menorValor;
-		menorValor->dir = errado->dir;
+		// pai do menor valor
+		NO* paiDoMenorValor = acharpai(*raiz, menorValor->chave);
+
+		// se o menor valor esta logo abaixo do errado (sempre lado direito)
+		if(paiDoMenorValor == errado) {
+			printf("esta abajo");
+			paiDoMenorValor->esq = NULL;
+			if(paiDoErrado->dir == errado) paiDoErrado->dir = menorValor;
+			else paiDoErrado->esq = menorValor;
+		}
+		else {
+			printf("esta lejo");
+			paiDoMenorValor->esq = NULL;
+	
+			if(paiDoErrado->dir == errado) paiDoErrado->dir = menorValor;
+			else paiDoErrado->esq = menorValor;
+
+			menorValor->esq = errado->esq;
+			menorValor->dir = errado->dir;
+
+		}
 
 		free(errado);
 	}
@@ -211,16 +237,22 @@ int main() {
 	inserirNo(&arv, 76);
 	inserirNo(&arv, 9);
 	inserirNo(&arv, 14);
+	inserirNo(&arv, 53);
 	inserirNo(&arv, 67);
-	inserirNo(&arv, 15);
+	inserirNo(&arv, 66);
+	inserirNo(&arv, 100);
+	inserirNo(&arv, 8);
+	inserirNo(&arv, 13);
 
-	imprimirArvore(arv, 0);
+
+	imprimirArvore(arv, 72);
 	printf("\n\n\n");
 
 
-	NO* noAExcluir = acharNo(arv, 15);
-	exlcuirNo(arv, noAExcluir);
+	NO* noAExcluir = acharNo(arv, 50);
+	exlcuirNo(&arv, noAExcluir);
 
+	printf("\n\n");
 	imprimirArvore(arv, 0);
 
 
