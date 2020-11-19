@@ -331,6 +331,8 @@ NO* ehValido(NO* *raiz, NO* *queueue){
 	
 	if ( p == NULL ) return NULL;
 
+	printf("percorrendo : %d\n", p->chave);
+
 	
 	if ( ehValido(&(p->esq), queueue) || ehValido(&(p->dir), queueue) ) {
 		printf("erro3 : %d\n", p->chave);
@@ -382,6 +384,53 @@ int main() {
 	NO* arv = NULL;
 
 
+/*
+	NO* sanshi = inserirNo(&arv, 30);
+
+	NO* san = inserirDadoPai(&arv, sanshi, 3, 1);
+	NO* wu = inserirDadoPai(&arv, san, 5, 1);
+	NO* ershiwu = inserirDadoPai(&arv, san, 20, 2);
+	NO* shijiu = inserirDadoPai(&arv, ershiwu, 19, 1);
+	NO* ershier = inserirDadoPai(&arv, ershiwu, 22, 2);
+	NO* shiba = inserirDadoPai(&arv, shijiu, 18, 1);
+
+	NO* liushi = inserirDadoPai(&arv, sanshi, 60, 2);
+	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
+	NO* yibai = inserirDadoPai(&arv, liushi, 100, 2);
+	NO* yibaiyi = inserirDadoPai(&arv, yibai, 101, 2);
+*/
+
+
+
+//	========= 세개일때 문제남 =============
+
+	NO* sanshi = inserirNo(&arv, 30);
+	NO* jiu = inserirDadoPai(&arv, sanshi, 9, 1);
+	NO* jiushi = inserirDadoPai(&arv, sanshi, 7, 2);
+
+
+/*
+	NO* sanshi = inserirNo(&arv, 30);
+	NO* jiu = inserirDadoPai(&arv, sanshi, 9, 1);
+	NO* jiushi = inserirDadoPai(&arv, sanshi, 90, 2);
+*/
+
+/*
+	NO* sanshi = inserirNo(&arv, 30);
+	NO* jiu = inserirDadoPai(&arv, sanshi, 1, 1);
+*/
+
+/*
+	NO* sanshi = inserirNo(&arv, 30);
+	NO* jiu = inserirDadoPai(&arv, sanshi, 78, 1);
+*/
+
+/*
+	NO* sanshi = inserirNo(&arv, 30);
+	NO* jiu = inserirDadoPai(&arv, sanshi, 9, 2);
+*/
+
+/*
 	NO* sanshi = inserirNo(&arv, 30);
 
 	NO* san = inserirDadoPai(&arv, sanshi, 7, 1);
@@ -395,7 +444,7 @@ int main() {
 	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
 	NO* yibai = inserirDadoPai(&arv, liushi, 100, 2);
 	NO* yibaiyi = inserirDadoPai(&arv, yibai, 101, 2);
-
+*/
 
 /*
 	NO* sanshi = inserirNo(&arv, 30);
@@ -415,8 +464,8 @@ int main() {
 	NO* sanshier = inserirDadoPai(&arv, bashijiu, 29, 2);
 */
 
-/*
 
+/*
 	NO* sanshi = inserirNo(&arv, 30);
 
 	NO* ershi = inserirDadoPai(&arv, sanshi, 20, 1);
@@ -428,8 +477,9 @@ int main() {
 	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
 	NO* yibai = inserirDadoPai(&arv, liushi, 100, 2);
 	NO* yibaiyi = inserirDadoPai(&arv, yibai, 101, 2);
-
 */
+
+
 /*
 	NO* sanshi = inserirNo(&arv, 30);
 
@@ -449,6 +499,7 @@ int main() {
 
 
 	imprimirArvore(arv, 0);
+	printf("\n\n\n\n");
 	organizar(&arv);
 
 	printf("\n\n\n\n");
