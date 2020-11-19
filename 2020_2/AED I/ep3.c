@@ -238,6 +238,8 @@ void exlcuirNo(NO** raiz, NO* errado){
 				printf("esta abajo");
 				if(paiDoErrado->dir == errado) paiDoErrado->dir = menorValor;
 				else paiDoErrado->esq = menorValor;
+
+				menorValor->esq = errado->esq;
 			}
 			else {
 				printf("esta lejo");
@@ -285,91 +287,9 @@ void exlcuirNo(NO** raiz, NO* errado){
 
 }
 
-/*
-
-int altura(NO* p){
-
-	if(p == NULL) return 0;
-
-	return altura(p->esq) > altura(p->dir) ? altura(p->esq)+1 : altura(p->dir)+1;
-}
-
-
-void exibirFolhas(NO* p, NO** folha){
-	if(p) {
-		if(p->esq == NULL && p->dir == NULL) *folha = p;
-		exibirFolhas(p->esq);
-		exibirFolhas(p->dir);
-	}
-}
-
-
-void buscarPenultimoNivel(NO* atual, NO* pilhas){
-
-	NO* esquerda = atual->esq;
-	NO* direita = atual->dir;
-
-	if ( ! (esquerda == NULL && direita == NULL)  ){
-		empilhar(&pilhas, atual);
-	}
-	buscarPenultimoNivel(esquerda);
-	buscarPenultimoNivel(direita);
-
-}
-
-
-int ehValido1(NO* *raiz, NO* devolver){
-
-	NO* pilhas = NULL;
-
-	while(pilhas){
-		printf("%d ", pilhas->chave);
-		pilhas = pilhas->dir;
-	}
-
-	NO* esquerda = atual->esq;
-	NO* direita = atual->dir;
-	if ( ! (esquerda == NULL && direita == NULL) ){
-		printf("e");
-	}
-
-
-	// buscar penultimo nivel <- vem de outra funcao
-	// 		ver se ele eh valido min/max
-	//			se errado, atualiza devolver
-	// 		se eh valido, recursive(acharPai(p))
-	// 		condicao de parada : se chegar no raiz
-	// compara o nivel com o anterior penultimo
-
-}
-
-
-// versao nova
-int ehValido2(NO* *raiz){
-
-	NO* p = (*raiz);
-	int min, max;
-
-	// se eh menor que min ou maior que max, eh errado
-	if ( !(p < max && p > min) ) return p;
-
-	else{
-		ehValido( acharpai(p) );
-	}
-
-	if ( (*raiz)->esq && (*raiz)->dir ){
-		min = ehValido(&(*raiz)->esq);
-		max = ehValido(&(*raiz)->dir);
-	}
-
-}
-
-*/
-
 
 // esq = ponteiro guardado
-// dir = proximo do queue
-// false queue
+// falso queue
 void montarQueue(NO* *queueue, NO* atual){
 
 
