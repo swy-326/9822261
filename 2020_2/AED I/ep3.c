@@ -4,6 +4,19 @@
 #include <string.h>
 #include <stdbool.h>
 
+
+/*
+
+https://blog.csdn.net/xiaofei0859/article/details/77284951
+https://www.jianshu.com/p/5c92720206e9
+https://labuladong.gitbook.io/algo/shu-ju-jie-gou-xi-lie/2.3-shou-ba-shou-shua-er-cha-shu-xun-lian-di-gui-si-wei/er-cha-sou-suo-shu-cao-zuo-ji-jin
+https://www.jianshu.com/p/998e0162db31
+https://blog.csdn.net/sinat_35261315/article/details/78885322
+
+*/
+
+
+
 // ######### ESCREVA O NROUSP AQUI
 const char* nroUSP() {
     return("9822261");
@@ -118,17 +131,26 @@ void printInOrder(NO* raiz){
 // achar pai, raiz sempre eh valida
 NO* acharpai(NO* raiz, int valor){
 
-	NO* p = raiz;
+	if (raiz != NULL){
 
-	NO* esquerda = p->esq;
-	NO* direita = p->dir;
+		NO* p = raiz;
+		NO* temp = NULL;
 
-	if (esquerda != NULL && esquerda->chave == valor || direita != NULL && direita->chave == valor) return p;
+		NO* esquerda = p->esq;
+		NO* direita = p->dir;
+
+		if (esquerda != NULL && esquerda->chave == valor || direita != NULL && direita->chave == valor) return p;
 	
-	else {
-		return acharpai(esquerda, valor);
-		return acharpai(direita, valor);
+		else {
+			if (esquerda != NULL){
+				temp = acharpai(esquerda, valor);
+			}  
+			if (temp == NULL && direita != NULL){
+				return acharpai(direita, valor); 
+			}
+		}
 	}
+
 }
 
 
@@ -229,6 +251,7 @@ void exlcuirNo(NO** raiz, NO* errado){
 
 			// pai do menor valor
 			NO* paiDoMenorValor = acharpai(*raiz, menorValor->chave);
+			printf("paiDoMenorValor : %d\n", paiDoMenorValor->chave);
 
 			// se o menor valor esta logo abaixo do errado (sempre lado direito)
 			if(paiDoMenorValor == errado) {
@@ -358,7 +381,7 @@ int main() {
 
 	NO* arv = NULL;
 
-/*
+
 	NO* sanshi = inserirNo(&arv, 30);
 
 	NO* san = inserirDadoPai(&arv, sanshi, 7, 1);
@@ -372,7 +395,8 @@ int main() {
 	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
 	NO* yibai = inserirDadoPai(&arv, liushi, 100, 2);
 	NO* yibaiyi = inserirDadoPai(&arv, yibai, 101, 2);
-*/
+
+
 /*
 	NO* sanshi = inserirNo(&arv, 30);
 
