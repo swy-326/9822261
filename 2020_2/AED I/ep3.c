@@ -219,7 +219,6 @@ void exlcuirNo(NO** raiz, NO* errado){
 			// se o menor valor esta logo abaixo do errado (sempre lado direito)
 			if(paiDoMenorValor == errado) {
 				printf("esta abajo");
-				paiDoMenorValor->esq = NULL;
 				if(paiDoErrado->dir == errado) paiDoErrado->dir = menorValor;
 				else paiDoErrado->esq = menorValor;
 			}
@@ -246,12 +245,13 @@ void exlcuirNo(NO** raiz, NO* errado){
 			// se o menor valor esta logo abaixo do errado (sempre lado direito)
 			if(paiDoMenorValor == errado) {
 				printf("esta abajo");
-				paiDoMenorValor->esq = NULL;
 				(*raiz) = menorValor;
+
+				menorValor->esq = errado->esq;
 			}
 			else {
 				printf("esta lejo");
-				paiDoMenorValor->esq = NULL;
+			//	paiDoMenorValor->esq = NULL;
 	
 				(*raiz) = menorValor;
 
@@ -301,12 +301,12 @@ void organizar(NO* *raiz) {
 	if( (*raiz) != NULL ){
 
 		NO* temp = ehValido(raiz);
-		if (temp) printf("no errado : %d\n", temp->chave);
+		if (temp != NULL){ 
+			printf("no errado : %d\n\n\n", temp->chave);
+			NO* noAExcluir = acharNo(*raiz, temp->chave);
+			exlcuirNo(raiz, noAExcluir);
+		}
 		else printf("correto\n");
-
-
-		NO* noAExcluir = acharNo(*raiz, temp->chave);
-		exlcuirNo(raiz, noAExcluir);
 
 	}
 }
@@ -321,7 +321,8 @@ int main() {
 	NO* arv = NULL;
 
 	NO* ershiyi = inserirNo(&arv, 21);
-	NO* wushi = inserirDadoPai(&arv, ershiyi, 50, 1);
+	NO* yi = inserirDadoPai(&arv, ershiyi, 1, 2);
+	NO* wushi = inserirDadoPai(&arv, ershiyi, 9, 1);
 
 
 
