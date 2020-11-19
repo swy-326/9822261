@@ -18,12 +18,28 @@ typedef struct estr {
 } NO;
 
 
+
+void inicializarArvore(NO* *raiz);
+NO* inserirNo(NO* *raiz, int ch);
+NO* inserirDadoPai(NO* *raiz, NO* pai, int ch, int pos);
+void imprimirArvore(NO* p, int d);
+NO* acharpai(NO* raiz, int valor);
+NO* acharNo(NO* raiz, int valor);
+NO* menorChave(NO* p);
+NO* maiorChave(NO* p);
+void exlcuirNo(NO** raiz, NO* errado);
+NO* ehValido(NO* *raiz);
+void printInOrder(NO* raiz);
+
+
+
+
 void inicializarArvore(NO* *raiz){
 	*raiz = NULL;
 }
 
 
-void inserirNo(NO* *raiz, int ch){
+NO* inserirNo(NO* *raiz, int ch){
 	NO* pai;
 	NO* atual;
 
@@ -55,6 +71,21 @@ void inserirNo(NO* *raiz, int ch){
 			}
 		}
 	}
+	return novo;
+}
+
+// Inserção de um nó em árvore comum (sem ordem) esq:pos=1 dir:pos=2 
+NO* inserirDadoPai(NO* *raiz, NO* pai, int ch, int pos) {
+	NO* novo;
+	novo = (NO *) malloc(sizeof(NO));
+	novo->chave = ch;
+	novo->esq = NULL;
+	novo->dir = NULL;
+	
+	if(pos == 1) pai->esq = novo;
+	else pai->dir = novo;
+
+	return novo;
 }
 
 
@@ -66,13 +97,6 @@ void imprimirArvore(NO* p, int d){
 		printf("%d\n", p->chave);
 		imprimirArvore(p->esq, d+1);
 	}
-}
-
-
-// retorna o endereco do no errado
-bool ehValido(NO* *raiz, NO* *errado){
-	NO* p = (*raiz);
-	return true;
 }
 
 
@@ -109,6 +133,14 @@ NO* acharNo(NO* raiz, int valor){
 NO* menorChave(NO* p){
 
 	while (p->esq != NULL) p = p->esq;
+	return p;
+
+}
+
+
+NO* maiorChave(NO* p){
+
+	while (p->dir != NULL) p = p->dir;
 	return p;
 
 }
@@ -205,6 +237,35 @@ void exlcuirNo(NO** raiz, NO* errado){
 
 }
 
+
+// retorna o endereco do no errado
+NO* ehValido(NO* *raiz){
+
+	NO* p = (*raiz);
+	
+	if ( p == NULL ) return NULL;
+
+	if ( p->esq != NULL && (maiorChave(p->esq))->chave > p->chave ) return p;
+	if ( p->dir != NULL && (menorChave(p->dir))->chave < p->chave ) return p;
+
+	if ( !ehValido(&(p->esq)) || !ehValido(&(p->dir)) ) return p;
+
+	return NULL;
+}
+
+
+void printInOrder(NO* raiz){
+	if(raiz != NULL){
+		printInOrder(raiz->esq);
+		printf("%d  ", raiz->chave);
+		printInOrder(raiz->dir);
+	}
+	
+}
+
+
+
+
 /*
 void organizar(NO* *raiz) {
 	
@@ -228,6 +289,21 @@ int main() {
 
 	inicializarArvore(&arv);
 
+	NO* ershiyi = inserirNo(&arv, 21);
+	NO* ershi = inserirNo(&arv, 20);
+	NO* liushi = inserirNo(&arv, 60);
+
+	NO* wu = inserirDadoPai(&arv, ershi, 5, 1);
+	NO* sanshiwu = inserirDadoPai(&arv, ershi, 35, 2);
+	NO* ershier = inserirDadoPai(&arv, sanshiwu, 22, 1);
+
+	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
+	NO* bai = inserirDadoPai(&arv, liushi, 100, 2);
+	NO* yibaiyi = inserirDadoPai(&arv, bai, 101, 2);
+
+
+
+/*
 	inserirNo(&arv, 50);
 	inserirNo(&arv, 17);
 	inserirNo(&arv, 72);
@@ -235,19 +311,23 @@ int main() {
 	inserirNo(&arv, 23);
 	inserirNo(&arv, 54);
 	inserirNo(&arv, 76);
-	inserirNo(&arv, 9);
 	inserirNo(&arv, 14);
 	inserirNo(&arv, 53);
-	inserirNo(&arv, 67);
-	inserirNo(&arv, 66);
 	inserirNo(&arv, 100);
-	inserirNo(&arv, 8);
-	inserirNo(&arv, 13);
+	inserirDadoPai(&arv, 100, 102, 1);
+*/
+
+	imprimirArvore(arv, 0);
+	printf("\n==============\n\n\n");
+
+	printInOrder(arv);
 
 
-	imprimirArvore(arv, 72);
-	printf("\n\n\n");
+	NO* temp = ehValido(&arv);
+	if (temp) printf("no errado : %d", temp->chave);
+	else printf("correto");
 
+/*
 
 	NO* noAExcluir = acharNo(arv, 50);
 	exlcuirNo(&arv, noAExcluir);
@@ -255,7 +335,7 @@ int main() {
 	printf("\n\n");
 	imprimirArvore(arv, 0);
 
-
+*/
 	// serao realizadas chamadas como esta:
 	// organizar(&arv);
 
