@@ -115,7 +115,7 @@ void printInOrder(NO* raiz){
 }
 
 
-// achar pai, raiz sempre eh != NULL
+// achar pai, raiz sempre eh valida
 NO* acharpai(NO* raiz, int valor){
 
 	NO* p = raiz;
@@ -126,9 +126,9 @@ NO* acharpai(NO* raiz, int valor){
 	if (esquerda != NULL && esquerda->chave == valor || direita != NULL && direita->chave == valor) return p;
 	
 	else {
-		if (valor < p->chave && esquerda != NULL) acharpai(esquerda, valor);
-		else acharpai(direita, valor);
-	} 
+		return acharpai(esquerda, valor);
+		return acharpai(direita, valor);
+	}
 }
 
 
@@ -206,15 +206,12 @@ void exlcuirNo(NO** raiz, NO* errado){
 		printf("case : apenas filho direito");
 
 		if (errado != (*raiz)){
-			pai = acharpai(*raiz, chaveErrado);
+			pai = acharpai(*raiz, errado->chave);
 
 			if (pai->esq == errado) pai->esq = errado->dir;
-			else if (pai->dir == errado) pai->dir = errado->dir;
+			else pai->dir = errado->dir;
 		}
 		else (*raiz) = errado->dir;
-
-
-		if (errado == *raiz) *raiz = pai;
 
 		free(errado);		
 	}
@@ -311,6 +308,13 @@ NO* ehValido(NO* *raiz, NO* *queueue){
 	
 	if ( p == NULL ) return NULL;
 
+	
+	if ( ehValido(&(p->esq), queueue) || ehValido(&(p->dir), queueue) ) {
+		printf("erro3 : %d\n", p->chave);
+		montarQueue(queueue, p);
+		return p;
+	}
+
 	if ( p->esq != NULL && (maiorChave(p->esq))->chave > p->chave ){ 
 		printf("erro1 : %d\n", p->chave);
 		montarQueue(queueue, p);
@@ -323,11 +327,6 @@ NO* ehValido(NO* *raiz, NO* *queueue){
 		return p;
 	}
 
-	if ( ehValido(&(p->esq), queueue) || ehValido(&(p->dir), queueue) ) {
-		printf("erro3 : %d\n", p->chave);
-		montarQueue(queueue, p);
-		return p;
-	}
 
 	return NULL;
 
@@ -343,7 +342,6 @@ void organizar(NO* *raiz) {
 
 		NO* temp = ehValido(raiz, &queueue);
 		if (temp != NULL){ 
-			//NO* noAExcluir = acharNo(*raiz, (queueue)->esq->chave);
 			exlcuirNo(raiz, queueue->esq);
 		}
 		else printf("correto\n");
@@ -360,6 +358,7 @@ int main() {
 
 	NO* arv = NULL;
 
+/*
 	NO* sanshi = inserirNo(&arv, 30);
 
 	NO* san = inserirDadoPai(&arv, sanshi, 7, 1);
@@ -373,7 +372,7 @@ int main() {
 	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
 	NO* yibai = inserirDadoPai(&arv, liushi, 100, 2);
 	NO* yibaiyi = inserirDadoPai(&arv, yibai, 101, 2);
-
+*/
 /*
 	NO* sanshi = inserirNo(&arv, 30);
 
@@ -389,11 +388,11 @@ int main() {
 	NO* ershi = inserirDadoPai(&arv, sanshi, 20, 1);
 
 	NO* bashijiu = inserirDadoPai(&arv, ershi, 89, 2);
-	NO* sanshier = inserirDadoPai(&arv, bashijiu, 32, 2);
-
+	NO* sanshier = inserirDadoPai(&arv, bashijiu, 29, 2);
 */
 
 /*
+
 	NO* sanshi = inserirNo(&arv, 30);
 
 	NO* ershi = inserirDadoPai(&arv, sanshi, 20, 1);
@@ -405,8 +404,8 @@ int main() {
 	NO* wushi = inserirDadoPai(&arv, liushi, 50, 1);
 	NO* yibai = inserirDadoPai(&arv, liushi, 100, 2);
 	NO* yibaiyi = inserirDadoPai(&arv, yibai, 101, 2);
-*/
 
+*/
 /*
 	NO* sanshi = inserirNo(&arv, 30);
 
@@ -414,7 +413,7 @@ int main() {
 	NO* wu = inserirDadoPai(&arv, san, 5, 1);
 	NO* ershiwu = inserirDadoPai(&arv, san, 25, 2);
 	NO* shijiu = inserirDadoPai(&arv, ershiwu, 19, 1);
-	NO* ershier = inserirDadoPai(&arv, ershiwu, 22, 2);
+	NO* ershier = inserirDadoPai(&arv, ershiwu, 29, 2);
 	NO* shiba = inserirDadoPai(&arv, shijiu, 18, 1);
 
 	NO* liushi = inserirDadoPai(&arv, sanshi, 60, 2);
@@ -430,4 +429,10 @@ int main() {
 
 	printf("\n\n\n\n");
 	imprimirArvore(arv, 0);
+
+		NO* queueue = NULL;
+
+
+	if ( ehValido(&arv, &queueue) == NULL ) printf("corretissimo");
+	else printf("ou errado ou teste errado");
 }
