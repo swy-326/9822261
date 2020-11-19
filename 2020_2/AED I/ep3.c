@@ -205,34 +205,64 @@ void exlcuirNo(NO** raiz, NO* errado){
 	else {
 		printf("case : ambos os filhos\n");
 
-		// procura o menor valor e pai do errado
-		NO* menorValor = menorChave(errado->dir);
-		NO* paiDoErrado = acharpai(*raiz, errado->chave);
-		printf("menor valor : %d\n", menorValor->chave);
+		if (errado != (*raiz)){
 
-		// pai do menor valor
-		NO* paiDoMenorValor = acharpai(*raiz, menorValor->chave);
+			// procura o menor valor e pai do errado
+			NO* menorValor = menorChave(errado->dir);
+			NO* paiDoErrado = acharpai(*raiz, errado->chave);
+			printf("menor valor : %d\n", menorValor->chave);
 
-		// se o menor valor esta logo abaixo do errado (sempre lado direito)
-		if(paiDoMenorValor == errado) {
-			printf("esta abajo");
-			paiDoMenorValor->esq = NULL;
-			if(paiDoErrado->dir == errado) paiDoErrado->dir = menorValor;
-			else paiDoErrado->esq = menorValor;
+			// pai do menor valor
+			NO* paiDoMenorValor = acharpai(*raiz, menorValor->chave);
+
+			// se o menor valor esta logo abaixo do errado (sempre lado direito)
+			if(paiDoMenorValor == errado) {
+				printf("esta abajo");
+				paiDoMenorValor->esq = NULL;
+				if(paiDoErrado->dir == errado) paiDoErrado->dir = menorValor;
+				else paiDoErrado->esq = menorValor;
+			}
+			else {
+				printf("esta lejo");
+				paiDoMenorValor->esq = NULL;
+	
+				if(paiDoErrado->dir == errado) paiDoErrado->dir = menorValor;
+				else paiDoErrado->esq = menorValor;
+
+				menorValor->esq = errado->esq;
+				menorValor->dir = errado->dir;
+			}
 		}
 		else {
-			printf("esta lejo");
-			paiDoMenorValor->esq = NULL;
-	
-			if(paiDoErrado->dir == errado) paiDoErrado->dir = menorValor;
-			else paiDoErrado->esq = menorValor;
 
-			menorValor->esq = errado->esq;
-			menorValor->dir = errado->dir;
+			// procura o menor valor e pai do errado
+			NO* menorValor = menorChave(errado->dir);
+			printf("menor valor : %d\n", menorValor->chave);
+
+			// pai do menor valor
+			NO* paiDoMenorValor = acharpai(*raiz, menorValor->chave);
+
+			// se o menor valor esta logo abaixo do errado (sempre lado direito)
+			if(paiDoMenorValor == errado) {
+				printf("esta abajo");
+				paiDoMenorValor->esq = NULL;
+				(*raiz) = menorValor;
+			}
+			else {
+				printf("esta lejo");
+				paiDoMenorValor->esq = NULL;
+	
+				(*raiz) = menorValor;
+
+
+				menorValor->esq = errado->esq;
+				menorValor->dir = errado->dir;
+			}
 
 		}
 
 		free(errado);
+
 	}
 
 }
@@ -318,24 +348,24 @@ int main() {
 */
 
 	imprimirArvore(arv, 0);
-	printf("\n==============\n\n\n");
 
-	printInOrder(arv);
+
+	//printf("\n==============\n\n\n");
+	//printInOrder(arv);
 
 
 	NO* temp = ehValido(&arv);
-	if (temp) printf("no errado : %d", temp->chave);
-	else printf("correto");
+	if (temp) printf("no errado : %d\n", temp->chave);
+	else printf("correto\n");
 
-/*
 
-	NO* noAExcluir = acharNo(arv, 50);
+	NO* noAExcluir = acharNo(arv, temp->chave);
 	exlcuirNo(&arv, noAExcluir);
 
 	printf("\n\n");
 	imprimirArvore(arv, 0);
 
-*/
+
 	// serao realizadas chamadas como esta:
 	// organizar(&arv);
 
