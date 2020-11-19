@@ -30,6 +30,7 @@ NO* maiorChave(NO* p);
 void exlcuirNo(NO** raiz, NO* errado);
 NO* ehValido(NO* *raiz);
 void printInOrder(NO* raiz);
+void organizar(NO* *raiz);
 
 
 
@@ -294,20 +295,22 @@ void printInOrder(NO* raiz){
 }
 
 
-
-
-/*
+// arvore com apenas dois elementos
 void organizar(NO* *raiz) {
-	
-	NO* errado = NULL;
-	NO* p = (*raiz);
 
-	if ( p != NULL ){
-		if( !ehValido(p, &errado) ) exlcuirNo(errado);
+	if( (*raiz) != NULL ){
+
+		NO* temp = ehValido(raiz);
+		if (temp) printf("no errado : %d\n", temp->chave);
+		else printf("correto\n");
+
+
+		NO* noAExcluir = acharNo(*raiz, temp->chave);
+		exlcuirNo(raiz, noAExcluir);
+
 	}
-
 }
-*/
+
 
 
 
@@ -317,8 +320,12 @@ int main() {
 
 	NO* arv = NULL;
 
-	inicializarArvore(&arv);
+	NO* ershiyi = inserirNo(&arv, 21);
+	NO* wushi = inserirDadoPai(&arv, ershiyi, 50, 1);
 
+
+
+/*
 	NO* ershiyi = inserirNo(&arv, 21);
 	NO* ershi = inserirNo(&arv, 20);
 	NO* liushi = inserirNo(&arv, 60);
@@ -331,7 +338,7 @@ int main() {
 	NO* bai = inserirDadoPai(&arv, liushi, 100, 2);
 	NO* yibaiyi = inserirDadoPai(&arv, bai, 101, 2);
 
-
+*/
 
 /*
 	inserirNo(&arv, 50);
@@ -353,16 +360,10 @@ int main() {
 	//printf("\n==============\n\n\n");
 	//printInOrder(arv);
 
-
-	NO* temp = ehValido(&arv);
-	if (temp) printf("no errado : %d\n", temp->chave);
-	else printf("correto\n");
+	organizar(&arv);
 
 
-	NO* noAExcluir = acharNo(arv, temp->chave);
-	exlcuirNo(&arv, noAExcluir);
-
-	printf("\n\n");
+	printf("\n\n\n\n");
 	imprimirArvore(arv, 0);
 
 
