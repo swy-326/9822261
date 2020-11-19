@@ -86,7 +86,7 @@ int main(){
 #include <string.h>
 
 
-// Sungwon Yoon
+// Sungwon Yoon - 9822261
 
 void swap(char* a, char* b){
 
