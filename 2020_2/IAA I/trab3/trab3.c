@@ -34,7 +34,7 @@ ELEMENTO* criarNo(int valor, float prior){
 }
 
 void swap (ELEMENTO** a, ELEMENTO** b){
-	printf("\tswap\n");
+	printf("\tswap %f com %f\n", (*a)->prior, (*b)->prior);
 	ELEMENTO* temp = *a;
 	*a = *b;
 	*b = temp;
@@ -130,26 +130,25 @@ ELEMENTO* extractMax(FILAPRIORIDADE* fila){
 }
 
 
-
 // case 3
 // copiado, no se q pio hace
-void heapIncreaseKey(ELEMENTO* A[], int i){
-
-	printf("\theapIncreaseKey\n");
-
-	while( i > 1 &&  A[indexParent(A, i)]->prior < A[i]->prior ){
+void heapIncreaseKey(ELEMENTO* A[], int i, ELEMENTO* novo){
+		
+	while( i > 1 && A[indexParent(A, i)]->prior < A[i]->prior ){
+		printf("\theapIncreaseKey\n");
+		printf("\t\tindice atual : %d\n");
 		swap( &A[i], &A[indexParent(A, i)] );
 		i = indexParent(A, i);
 	} 
 	
 }
 
-char heapInsert(ELEMENTO* A[], ELEMENTO* novo, float prior, int m){
+char heapInsert(ELEMENTO* A[], ELEMENTO* novo, int m){
 
 	printf("\theapInsert\n");
 
 	A[m] = novo;
-	heapIncreaseKey(A, m);
+	heapIncreaseKey(A, m, novo);
 
 	return 'T';
 }
@@ -158,11 +157,11 @@ char insert(FILAPRIORIDADE* fila, int valor, float prior){
 
 	printf("Inserindo %d...\n", valor);
 
-	if ( fila->m > 4000 ) return 'F';
+	if ( fila->m > 4000 || prior < 0 ) return 'F';
 
-	ELEMENTO* novo = criarNo(valor, prior);
 	fila->m += 1;
-	return heapInsert(fila->A, novo, prior, fila->m);
+	ELEMENTO* novo = criarNo(valor, prior);
+	return heapInsert(fila->A, novo, fila->m);
 
 }
 
@@ -231,6 +230,9 @@ int main(){
 				printf("\n\n");
 				break;
 		} 
+
+		//heapPrint(&fila);
+		printf("\n\n\n\n\n");
 	}
 
 	return 0;
