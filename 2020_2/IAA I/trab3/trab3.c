@@ -84,12 +84,11 @@ void maxHeapify(ELEMENTO* A[], int i, int m){
 
 	int max = i;
 	int leftIndex = indexLeftChild(A, i);
-	printf("\t\tpassou\n");
 	int rightIndex = indexRightChild(A, i);
 
 	if ( leftIndex <= m && leftIndex >= 1 ){
 		printf("\t\tcondicao 1\n");
-		if ( A[leftIndex]->prior > A[max]->prior ) max = leftIndex;
+		if ( A[leftIndex]->prior > A[i]->prior ) max = leftIndex;
 		printf("\t\tcondicao 1 depois de if\n");
 	}
 
@@ -123,7 +122,6 @@ ELEMENTO* extractMax(FILAPRIORIDADE* fila){
 	printf("Extraindo o maximo...\n");
 
 	if (fila->m == 0) return NULL;
-
 	return heapExtractMax(fila->A, &(fila->m));
 
 	// remove e devolve o elemento de S que possui a maior prioridade
@@ -157,7 +155,7 @@ char insert(FILAPRIORIDADE* fila, int valor, float prior){
 
 	printf("Inserindo %d...\n", valor);
 
-	if ( fila->m > 4000 || prior < 0 ) return 'F';
+	if ( fila->m > 4000 || prior < 0 || prior > 900000) return 'F';
 
 	fila->m += 1;
 	ELEMENTO* novo = criarNo(valor, prior);
