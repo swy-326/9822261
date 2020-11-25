@@ -20,7 +20,7 @@ typedef struct {
 
 // funcoes adicionais
 void init(FILAPRIORIDADE* fila){
-	printf("\tInit\n");
+	printf("Init\n\n");
 	fila->m = 0;
 }
 
@@ -45,7 +45,7 @@ int indexRightChild(ELEMENTO* A[], int i){
 }
 
 int indexLeftChild(ELEMENTO* A[], int i){
-	return ((2*i) <= 4000) ?  ((2*i)+1) : -1;
+	return ((2*i) <= 4000) ?  (2*i) : -1;
 }
 
 int indexParent(ELEMENTO* A[], int i){
@@ -78,26 +78,34 @@ ELEMENTO* maximum(FILAPRIORIDADE* fila){
 
 
 // case 2
-void maxHeapify(ELEMENTO* A[], int i){
+void maxHeapify(ELEMENTO* A[], int i, int m){
 
 	printf("\tmaxHeapify\n");
 
 	int max = i;
 	int leftIndex = indexLeftChild(A, i);
+	printf("\t\tpassou\n");
 	int rightIndex = indexRightChild(A, i);
 
-	if ( leftIndex <= 4000 && leftIndex >= 1 ){
+	if ( leftIndex <= m && leftIndex >= 1 ){
+		printf("\t\tcondicao 1\n");
 		if ( A[leftIndex]->prior > A[max]->prior ) max = leftIndex;
+		printf("\t\tcondicao 1 depois de if\n");
 	}
 
-	if ( rightIndex <= 4000 && rightIndex >= 1 ){
+	if ( rightIndex <= m && rightIndex >= 1 ){
+		printf("\t\tcondicao 2\n");
 		if ( A[rightIndex]->prior > A[max]->prior ) max = rightIndex;
 	}
 
 	if (max != i){
+		printf("\t\tif diferente\n");
 		swap( &A[i], &A[max] );
-		maxHeapify(A, max);
+		printf("\t\trealizou swap\n");
+		maxHeapify(A, max, m);
 	}
+
+	printf("\t\tterminou\n");
 
 }
 
@@ -106,7 +114,7 @@ ELEMENTO* heapExtractMax(ELEMENTO* A[], int* m){
 	ELEMENTO* elem = A[1];
 	A[1] = A[*m];
 	*m -= 1;
-	maxHeapify(A, 1);
+	maxHeapify(A, 1, *m);
 	return elem;	
 }
 
@@ -155,9 +163,7 @@ char insert(FILAPRIORIDADE* fila, int valor, float prior){
 
 	ELEMENTO* novo = criarNo(valor, prior);
 	fila->m += 1;
-	printf("%c\n", heapInsert(fila->A, novo, prior, fila->m));
-
-	return 'T';
+	return heapInsert(fila->A, novo, prior, fila->m);
 
 }
 
@@ -167,7 +173,7 @@ char insert(FILAPRIORIDADE* fila, int valor, float prior){
 // case 4
 void heapPrint(FILAPRIORIDADE* fila){
 
-	printf("Imprimindo...\n");
+	printf("Imprimindo... %d quantidades\n", fila->m);
 
 	for (int i = 1; i <= fila->m; i++){
 		printf("%d %.1f ", fila->A[i]->id, fila->A[i]->prior);
@@ -195,14 +201,16 @@ int main(){
 				elem = maximum(&fila);
 				if (elem)
 					printf("CASE 1 - Elem com max prioridade : %d %.1f\n", elem->id, elem->prior);
-				else printf("-1 -1,0");
+				else printf("-1 -1,0\n");
+				printf("\n\n");
 				break;
 
 			case 2 : 
 				elem = extractMax(&fila);
 				if (elem)
 					printf("CASE 2 - Extraido elem com max prioridade : %d %.1f\n", elem->id, elem->prior);
-				else printf("-1 -1,0");
+				else printf("-1 -1,0\n");
+				printf("\n\n");
 				break;
 
 			case 3 : 
@@ -210,14 +218,17 @@ int main(){
 				if (insert(&fila, valor, prior) == 'T')
 					printf("CASE 3 - Inserido %d tal vez com sucesso\n", valor);
 				else printf("CASE 3 - Nao inserido %d\n", valor);
+				printf("\n\n");
 				break;
 
 			case 4 : 
 				heapPrint(&fila);
+				printf("\n\n");
 				break;
 
 			default : 
 				printf("nao eh aqui\n");
+				printf("\n\n");
 				break;
 		} 
 	}
