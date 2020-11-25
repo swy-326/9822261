@@ -124,7 +124,6 @@ ELEMENTO* extractMax(FILAPRIORIDADE* fila){
 
 	if (fila->m == 0) return NULL;
 
-	fila->m -= 1;
 	return heapExtractMax(fila->A, &(fila->m));
 
 	// remove e devolve o elemento de S que possui a maior prioridade
@@ -195,6 +194,7 @@ int main(){
 	for (int i = 0; i < Q; i++){
 
 		int caso; scanf("%d", &caso);
+		printf("===== no total : %d =====\n", fila.m);
 		
 		switch(caso){
 			case 1 : 
