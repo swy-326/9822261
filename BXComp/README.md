@@ -1,7 +1,7 @@
 # bxcomp
-2020.09.18
+<b>http://www.each.usp.br/petsi/bxcomp2020/<br>Grupo "Sem Nome"</b>
 
-<br><br>
 
+18/09/2020
+<br>
 23/10/2020 - nao teve <br>
-30/10/2020 - semana 5
