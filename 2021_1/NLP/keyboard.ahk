@@ -4,6 +4,7 @@ return
 
 Numpad2::
 	Send {Right} {Right} 1 {Enter} {Left} {Left}
+
 return
 
 Numpad3::
@@ -11,5 +12,5 @@ Numpad3::
 return
 
 NumpadEnter::
-	Send {Enter} {Enter}
+	Send {Down}
 return
