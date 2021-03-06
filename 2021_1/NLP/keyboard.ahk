@@ -1,10 +1,13 @@
+Numpad0::
+	Send {Right} 0 {enter} {Left}
+return
+
 Numpad1::
 	Send {Right} 1 {enter} {Left}
 return
 
 Numpad2::
 	Send {Right} {Right} 1 {Enter} {Left} {Left}
-
 return
 
 Numpad3::
