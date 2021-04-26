@@ -14,8 +14,8 @@ typedef struct vertice {
 } VERTICE;
 
 typedef struct grafo {
-    int vertices; // 그냥 갯수
-    int arestas; // 그냥 갯수
+    int vertices;
+    int arestas;
     VERTICE *adj;
 } GRAFO;
 
