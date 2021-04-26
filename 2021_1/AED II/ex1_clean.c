@@ -9,7 +9,6 @@ typedef struct aresta {
 } ARESTA;
 
 typedef struct vertice {
-    // Dados do vertice (ex : nome da cidade)
     ARESTA *inicio;
 } VERTICE;
 
@@ -109,11 +108,11 @@ void adjacencia2incidencia(VERTICE* g, int n){
     // "movimenta" os vertices
     for (int i = 1; i < n; i++){
 
-        if (!(g[i].inicio == NULL || restamQnts[i] == 0)) {
+        if (!(g[i].inicio == NULL || restamQnts[i] == 0)){
 
             ARESTA *a = g[i].inicio;
 
-            while (restamQnts[i] > 0) {
+            while (restamQnts[i] > 0){
 
                 int vDestino = a->vertice;
                 a->vertice = i;
@@ -134,25 +133,16 @@ void adjacencia2incidencia(VERTICE* g, int n){
 
                 restamQnts[i]--;
                 a = aProx;
+
             }
-
         }
-
     }
-
 }
 
 
 int main (){
 
     GRAFO *gr = criaGrafo(6);
-/*
-    criaAresta(gr, 3, 1, 0);
-    criaAresta(gr, 3, 2, 0);
-    criaAresta(gr, 3, 3, 0);
-    criaAresta(gr, 3, 4, 0);
-    criaAresta(gr, 3, 5, 0);
-*/
 
     criaAresta(gr, 1, 3, 0);
     criaAresta(gr, 1, 2, 0);
