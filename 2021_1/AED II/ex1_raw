@@ -1,3 +1,15 @@
+/* 
+temp folder -> ex1.c 
+Contexto: uma forma alternativa de representar um grafo é por meio de uma lista de incidências. Nesta representação, utilizamos o mesmo vetor de vértices da implementação vista; no entanto, ao invés de criarmos uma lista de elementos adjacentes de cada vértice, criamos a lista dos elementos que incidem sobre cada um.
+
+Objetivo: dada uma estrutura de listas de adjacências, transforme-a em uma estrutura de listas de incidências.
+
+       void adjacencia2incidencia(VERTICE* g, int n)
+
+Deposite aqui um arquivo txt, com o codigo da funcao C completa para realizar esta operação.
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
