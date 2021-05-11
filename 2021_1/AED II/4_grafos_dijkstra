@@ -42,6 +42,7 @@
 
 */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -64,18 +65,6 @@ typedef struct grafo {
     int arestas;
     VERTICE *adj;
 } GRAFO;
-
-
-GRAFO *criaGrafo(int v);
-ARESTA *criaAdj(int v, int peso);
-bool criaAresta (GRAFO *gr, int vi, int vf, int p, int ch);
-void imprime (GRAFO *gr);
-void inicializaD (GRAFO *g, int *d, int *p, int s);
-void relaxa (GRAFO *g, int *d, int *p; int u, int v);
-bool existeAberto (GRAFO *g, int *aberto);
-int menorDist (GRAFO *g; int *aberto; int *d);
-int *dijkstra (GRAFO *g, int s);
-
 
 
 GRAFO *criaGrafo(int v) {
@@ -142,14 +131,19 @@ void imprime (GRAFO *gr){
 
 void inicializaD (GRAFO *g, int *d, int *p, int s){
 
-    for (int v = 0; g->vertices; v++){
-        d[v] = INT_MAX / 2;
+    printf("inicializaD\n");
+    for (int v = 1; v < g->vertices; v++){
+        d[v] = 56 / 2;
         p[v] = -1;
     }
     d[s] = 0;
+
+    printf("\tfim\n\n");
 }
 
-void relaxa (GRAFO *g, int *d, int *p; int u, int v){
+void relaxa (GRAFO *g, int *d, int *p, int u, int v){
+
+    printf("relaxa\n");
 
     ARESTA *ad = g->adj[u].inicio;
 
@@ -161,32 +155,44 @@ void relaxa (GRAFO *g, int *d, int *p; int u, int v){
             p[v] = u;
         }
     }
+    printf("\tfim\n\n");
 }
 
-bool existeAberto (GRAFO *g, int *aberto){
-    
+bool existeAberto (GRAFO *g, bool *aberto){
+
+    printf("existeAberto\n");
+
     for (int i = 0; i < g->vertices; i++)
         if (aberto[i]) return true;
 
+    printf("\tfim\n\n");
     return false;
 }
 
-int menorDist (GRAFO *g; int *aberto; int *d){
+int menorDist (GRAFO *g, bool *aberto, int *d){
+
+    printf("menorDist\n");
 
     int i;
     for (i = 0; i < g->vertices; i++)
         if (aberto[i]) break;
 
-    if (i == g->vertices) return -1;
+    if (i == g->vertices) {
+        printf("\tfim\n\n");
+        return -1;
+    }
 
     int menor = i;
     for (i = menor + 1; i < g->vertices; i++){
         if (aberto[i] && d[menor] > d[i]) menor = i;
     }
+    printf("\tfim\n\n");
     return menor;
 }
 
 int *dijkstra (GRAFO *g, int s){
+
+    printf("*dijkstra\n");
 
     int *d = (int *) malloc (g->vertices * sizeof(int));
     int p[g->vertices];
@@ -208,6 +214,7 @@ int *dijkstra (GRAFO *g, int s){
             ad = ad->prox;
         }
     }
+    printf("\tfim\n\n");
     return d;
 }
 
@@ -216,20 +223,21 @@ int main (){
     GRAFO *gr = criaGrafo(6);
     gr->adj[2].chave = 1;
 
-    criaAresta(gr, 1, 3, 0, 0);
-    criaAresta(gr, 1, 2, 0, 0);
-    criaAresta(gr, 3, 2, 0, 0);
-    criaAresta(gr, 3, 5, 0, 0);
-    criaAresta(gr, 4, 2, 0, 0);
+    criaAresta(gr, 1, 3, 3, 0);
+    criaAresta(gr, 1, 2, 8, 0);
+    criaAresta(gr, 3, 2, 4, 0);
+    criaAresta(gr, 3, 5, 1, 0);
+    criaAresta(gr, 4, 2, 3, 0);
     criaAresta(gr, 4, 3, 0, 0);
-    criaAresta(gr, 5, 4, 0, 0);
+    criaAresta(gr, 5, 4, 8, 0);
 
     imprime(gr);
 
-    int *r = dijkstra(gr, 0);
+    int *r = dijkstra(gr, 1);
+    printf("sucess\n");
 
-    for (int i = 0; i < gr->vertices; i++){
-        printf("D(v0 -> V%d) = %d\n", i, r[i]);
+    for (int i = 1; i < gr->vertices; i++){
+        printf("D(v1 -> V%d) = %d\n", i, r[i]);
     }
 
     return 0;
