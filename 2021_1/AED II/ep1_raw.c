@@ -243,7 +243,7 @@ void buscaProfundidade (VERTICE* g, int x, int y, int d, int count, int flag[], 
         NO* p = g[x].inicio;
 
         printf("\tcount : %d\n", count);
-        while (p && count < d){
+        while (p && count <= d){
             printf("\t\tadicionando os proximos\n");
             if (flag[p->v] == 0) buscaProfundidade(g, p->v, y, d, count, flag, seqP, seqF);
             p = p->prox;
