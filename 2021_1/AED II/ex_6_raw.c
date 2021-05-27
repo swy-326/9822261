@@ -10,6 +10,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 
 #define MAX 30
@@ -76,6 +78,27 @@ void leArquivoResultado (){
 }
 
 
+void swap (struct registro *r1, struct registro *r2){
+
+	char nrousp[7]; strncpy(nrousp, r1->nrousp, 7);
+	char nome[20]; strncpy(nome, r1->nome, 20);
+	int idade = r1->idade;
+	int valido = r1->valido;
+
+
+	strncpy(r1->nrousp, r2->nrousp, 7);
+	strncpy(r1->nome, r2->nome, 20);
+	r1->idade = r2->idade;
+	r1->valido = r2->valido;
+
+
+	strncpy(r2->nrousp, nrousp, 7);
+	strncpy(r2->nome, nome, 20);
+	r2->idade = idade;
+	r2->valido = valido;
+
+}
+
 
 
 
@@ -84,7 +107,7 @@ void trocaRegistro(char *nome, int r1, int r2){
 	struct registro reg1;
 	struct registro reg2;
 
-	FILE *arq = fopen(nome, "rb");
+	FILE *arq = fopen(nome, "rb+");
 
 	rewind(arq);
 
@@ -98,13 +121,7 @@ void trocaRegistro(char *nome, int r1, int r2){
 	printf("reg2 : %d\n", reg2.idade);
 
 
-
-
 	swap(&reg1, &reg2);
-
-
-
-
 
 	fseek(arq, r1 * sizeof(struct registro), SEEK_SET);
 	fwrite(&reg1, sizeof(struct registro), 1, arq);
@@ -126,7 +143,7 @@ int main(){
 	// cria arquivo novo 
 	criaArquivoFixo();
 	//leArquivoResultado();
-	trocaRegistro(gets(nome), 4, 5);
+	trocaRegistro("resultado.txt", 0, 1);
 	leArquivoResultado();
 
 	return 0;
