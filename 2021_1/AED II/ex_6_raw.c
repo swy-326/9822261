@@ -121,6 +121,7 @@ void trocaRegistro(char *nome, int r1, int r2){
 	printf("reg2 : %d\n", reg2.idade);
 
 
+	/* 
 	swap(&reg1, &reg2);
 
 	fseek(arq, r1 * sizeof(struct registro), SEEK_SET);
@@ -128,7 +129,14 @@ void trocaRegistro(char *nome, int r1, int r2){
 
 	fseek(arq, r2 * sizeof(struct registro), SEEK_SET);
 	fwrite(&reg2, sizeof(struct registro), 1, arq);
+	*/
+	
+	fseek(arq, r1 * sizeof(struct registro), SEEK_SET);
+	fwrite(&reg2, sizeof(struct registro), 1, arq);
 
+	fseek(arq, r2 * sizeof(struct registro), SEEK_SET);
+	fwrite(&reg1, sizeof(struct registro), 1, arq);
+	
 
 	fclose(arq);
 
