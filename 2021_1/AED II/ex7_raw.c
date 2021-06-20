@@ -97,7 +97,7 @@ void imprime (VERTICE* g, int n){
 void criaArquivo (int n, VERTICE* g){
 
 	int sss = remove("aaa.txt");
-	FILE *fp = fopen("aaa.txt", "w");
+	FILE *fp = fopen("aaa.txt", "wb");
 
 	if (fp == NULL) exit(1);
 
