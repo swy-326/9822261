@@ -1,0 +1,15 @@
+Nome : Sungwon Yoon
+Nro USP : 9822261
+
+==============================
+
+INSTRUCOES DE COMPILACAO E EXECUCAO
+
+1. No terminal na pasta pong/src, digite seguintes comandos
+2. Para compilar os arquivos java
+	javac *.java
+	ou java Ball.java Player.java Score.java
+3. Para executar
+	java Pong
+
+==============================
