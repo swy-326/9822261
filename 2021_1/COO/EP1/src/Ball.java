@@ -19,8 +19,7 @@ public class Ball {
 	private double directionX;
 	private double directionY;
 
-	private String lasthit = "";
-
+	private Object lasthit;
 
 	/**
 		Construtor da classe Ball. Observe que quem invoca o construtor desta classe define a velocidade da bola 
@@ -42,7 +41,7 @@ public class Ball {
 		this.width = width;
 		this.height = height;
 		this.color = color;
-		this.speed = 0.1;
+		this.speed = speed;
 
 		defineDirection();
 	}
@@ -121,35 +120,34 @@ public class Ball {
 	
 	public boolean checkCollision(Wall wall){
 
-		if (lasthit.equals(wall.getId())) return false;
-
+		if (this.lasthit == wall) return false;
 
 		String wallId = wall.getId();
 		
 		if (wallId.equals("Top")) {
 			if (this.cy - this.height/2 <= wall.getCy() + wall.getHeight()/2){
-				lasthit = wallId;
+				this.lasthit = wall;
 				return true;
 			}
 		}
 
 		else if (wallId.equals("Bottom")) {
 			if (this.cy + this.height/2 >= wall.getCy() - wall.getHeight()/2){
-				lasthit = wallId;
+				this.lasthit = wall;
 				return true;
 			}
 		}
 
 		else if (wallId.equals("Right")) {
 			if (this.cx + this.width/2 >= wall.getCx() - wall.getWidth()/2){
-				lasthit = wallId;
+				this.lasthit = wall;
 				return true;
 			}
 		}
 
 		else if (wallId.equals("Left")) {
 			if (this.cx - this.width/2 <= wall.getCx() + wall.getWidth()/2){
-				lasthit = wallId;
+				this.lasthit = wall;
 				return true;
 			}
 		}
@@ -166,8 +164,8 @@ public class Ball {
 
 	public boolean checkCollision(Player player){
 
-		if (lasthit.equals(player.getId()))	return false;
-		
+		//if (lasthit.equals(player.getId()))	return false;
+		if (lasthit == player) return false;
 
 		double playerTop = player.getCy() - player.getHeight() / 2;
 		double playerBottom = player.getCy() + player.getHeight() / 2;
@@ -179,8 +177,8 @@ public class Ball {
 		&& this.cx + this.width/2 >= playerLeft
 		&& this.cx - this.width/2 <= playerRight);
 
-		if (collision == true) lasthit = player.getId();
-
+		//if (collision == true) lasthit = player.getId();
+		if (collision == true) lasthit = player;
 
 		return collision;
 	}

@@ -30,8 +30,14 @@ public class Score {
 
 	public void draw(){
 
-		if (this.playerId.equals("Player 1")) GameLib.drawText(this.playerId + ": " + this.score, 70, GameLib.ALIGN_LEFT);
-		else if (this.playerId.equals("Player 2")) GameLib.drawText(this.playerId + ": " + this.score, 70, GameLib.ALIGN_RIGHT);
+		if (this.playerId.equals("Player 1")){
+			GameLib.setColor(Color.GREEN);
+			GameLib.drawText(this.playerId + ": " + this.score, 70, GameLib.ALIGN_LEFT);
+		}
+		else if (this.playerId.equals("Player 2")) {
+			GameLib.setColor(Color.BLUE);
+			GameLib.drawText(this.playerId + ": " + this.score, 70, GameLib.ALIGN_RIGHT);
+		}
 	}
 
 	/**
