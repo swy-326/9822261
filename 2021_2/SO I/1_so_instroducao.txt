@@ -1,0 +1,104 @@
+Sistemas Operacionais #1 Introducao
+
+# Informacoes Gerais
+
+- 공룡책 7a edicao
+
+
+# OS 
+
+- gerencia recursos do sistema 
+- objetivos:
+	- executar aplicativos do usuario
+	- prover interface para interacao com usuario
+	- tornar conveniente/eficiente o uso dos recursos de hardware
+
+
+# Estrutura do sistema de computacao
+
+- 4 componentes :
+	- hardware: CPU, memoria, dispositivos E/S 
+	- OS 
+	- programas de aplicacao: definem as formas como os recursos do sistema sao usados para solucionar problemas
+	- usuarios
+
+
+# Definicao do sistema operacional 
+
+- alocador de recursos
+	gerencia todos os recursos, conflitos
+- programa de controle
+	impedir erros e uso indevido do computador
+- unico programa rodando eh o KERNEL
+
+
+# Inicializacao do computador
+
+- BOOTSTRAP eh carregado na inicializacao
+- normalmente armazenado em ROM ou EPROM, geralmente conhecido como firmware
+- carrega o kernel do OS e inicia a execucao
+
+
+# Organizacao do sistema de computacao
+
+- operacao do sistema de computacao
+	uma ou mais cpus, controladores de dispositivo conectados pelo barramento comum, oferecendo acesso a memoria compartilhada
+- cada controlador responsavel por cada dispositivo -- cada um tem buffer local
+- E/S <-> buffer <-> memoria
+- o controlador de dispositivo informa a cpu que terminou sua operacao causando uma interrupcao
+
+
+# Funcoes comuns das interrupcoes
+
+- transfere o controle para a rotina de atendimento de interrupcao, por meio do vetor de interrupcao, que contem os enderecos de todas as rotinas de servico
+- o endereco da instrucao interrompida eh salvo
+- as interrupcoes que chegam sao desativadas enquanto utra interrupcao esta sendo processada, para evitar uma interrupcao perdida
+- um OS eh baseado em interrupcao
+- OS preserva o estado da cpu, armazenado o conteudo dos registradores e o contador do programa
+- cada tipo de interrupcao eh tratada de forma especifica
+
+
+# Dois metodos de E/S
+
+- sincrona e assincrona
+
+
+# Tabela de status de dispositivo
+
+- requisicoes
+
+
+# Estrutura de acesso direto a memoria
+
+- usado para dispositivos de E/S de alta velocidade (ram)
+- controlador de dispositivo transfere blocos de dados do armazenamento em buffer diretamente para a memoria principal, sem intervencao da CPU
+- somente uma interrupcao eh gerada por bloco, em vez de uma interrupcao por byte
+
+
+# Estrutura de armazenamento
+
+- memoria principal > armazenamento secundario > discos magneticos
+
+
+# Hierarquia de armazenamento
+
+- velocidade, custo, volatilidade
+- caching
+
+
+# Caching
+
+- rapido, temporario
+- copia no cache primeiro, dps usa <- nem sempre eh assim
+- tamanho do cache e politica de substituicao
+
+
+# Estrutura do OS
+
+- multiprogramacao necessaria por eficiencia
+	- unico usuario nao pode monopolizar cpu e dispositivos
+	- multiprogramacao organiza jobs de modo que a cpu sempre tenha um job a executar
+	- um subconjunto do total de jobs pendentes eh mantido na memoria
+	- um job eh selecionado e executado via escalonamento de job
+	- quanto tiver que esperar (pela E/S p.e.), o SO passa para outro job
+
