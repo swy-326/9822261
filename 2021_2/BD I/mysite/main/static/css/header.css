@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+
+a {
+    color: #303841;
+    text-decoration: none;
+    background-color: transparent;
+  }
+
+a:hover {
+    color: #303841;
+}
+
+body {
+    margin-top: 30px;
+}

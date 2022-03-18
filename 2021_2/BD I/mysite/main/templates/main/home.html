@@ -1,0 +1,70 @@
+{% extends "main/header.html" %}
+
+
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</head>
+
+
+
+
+<body class="text-center">
+  {% block content %}
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column" style="margin-top: 30px;">
+    
+
+      <main role="main" class="inner cover">
+
+        <div class="row">
+        <div class="col align-self-start">
+          <h1 class="cover-heading">Daily Curious Fact</h1>
+          <p class="lead">Everyday some useless fact to entertain you</p>
+        </div>
+        <div class="col align-self-end text-right">
+          <p class="lead">
+<<<<<<< HEAD
+            <a href="create_curiosity" class="btn btn-lg btn-secondary">Contribute</a>
+=======
+            <a href="#" class="btn btn-lg btn-secondary">Contribute</a>
+>>>>>>> 017e3d5e67409e758b9165fc1696449e0775bb68
+          </p>
+      </div>
+    </div>
+
+
+      </main>
+      <div class="card shadow-sm">
+        
+        {% for curiosity in curiosities %}
+        <div class="card-body">
+          <p class="card-text"><b>{{curiosity}}</b></p>
+          {% for comment in comments %}
+            {% if comment.curiosity_id.id == curiosity.id %}
+            <div class="card">
+              <div class="card-body">
+                {{comment}}
+                <a class="btn btn-primary" href="create_comment">Comentar</a>
+                {% if user.id == comment.author_id.id %}
+                  <a class="btn btn-danger" href="{% url 'main:delete_curiosity' comment.comment_id %}">Deletar</a>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+          {% endfor %}
+
+        </div>
+        {% endfor %}
+      </div>
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Cover tttemplate for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+      </footer>
+    </div>
+    {% endblock %}
+    
+
+  </body>

@@ -1,0 +1,33 @@
+{% extends "main/header.html" %}
+
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+
+
+<body class="login text-center">
+
+  {% block content %}
+  <form method="POST" class="text-center" style="margin-top: 60px;">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn-dark rounded" style="margin: 10px 0 10px 0;">Login</button>
+  </form>
+
+  <p class="text-center">
+  If you don't have an account, <a href="register/" class="font-weight-bold">register</a> instead
+  
+  {% endblock %}
+  {% if messages %}
+    {%for message in messages%}
+      %message%
+    {%endfor%}
+  {% endif %}
+
+</p>
+
+</body>
+

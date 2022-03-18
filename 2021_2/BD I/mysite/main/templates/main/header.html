@@ -1,0 +1,52 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</head>
+
+
+
+<body>
+    <nav>
+
+        <ul class="display-4 nav justify-content-center font-weight-bold text-uppercase">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Daily Curious Fact</a>
+            </li>
+        </ul>
+
+        <ul class="h6 nav justify-content-center font-weight-normal">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Linkedin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Github</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Instagram</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">{{user.username}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">{{user.id}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="logout/">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="login/">Login</a>
+                </li>
+            {% endif %}
+            
+        </ul>
+
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+    
+</body>

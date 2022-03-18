@@ -1,0 +1,52 @@
+{% extends "main/header.html" %}
+
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
+    ul, li {
+      visibility: hidden;
+    }
+    
+</head>
+
+<body class="text-center">
+
+  {% block content %}
+
+  <form method="POST" class="text-center" style="margin-top: 60px;">
+
+    {% csrf_token %}
+
+    <p>
+    <label>{{ form.username.label }}:</label>
+    {{ form.username }}
+  
+    <p>
+    <label>{{ form.password1.label }}:</label>
+    {{ form.password1 }}
+  
+    <p>
+    <label>{{ form.password2.label }}:</label>
+    {{ form.password2 }}
+
+
+    <!-- {{form.as_p}} -->
+    <br><br>
+    <button type="submit" class="btn-dark rounded" style="margin: 10px 0 10px 0;">Send</button>
+  </form>
+
+  <p class="text-center">
+    If you already have an account, <a href="login/" class="font-weight-bold">login</a> instead
+    
+    {% endblock %}
+    {% if messages %}
+      {%for message in messages%}
+        %message%
+      {%endfor%}
+    {% endif %}
+  </p>
+
+</body>
+

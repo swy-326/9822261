@@ -1,0 +1,19 @@
+{% extends "main/header.html" %}
+
+
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+
+<body class="text-center">
+    {% block content %}
+        <p>Tem certeza que quer deletar {{comment}}</p>
+        <form action="{% url 'main:delete_curiosity' comment.comment_id %}" method="POST">
+            {% csrf_token %}
+            <a href="{% url 'main:homepage' %}">Cancelar</a>
+            <button type="submit" class="btn btn-danger" name="Confirmar">Confirmar</button>
+        </form>
+    {% endblock %}
+</body>
