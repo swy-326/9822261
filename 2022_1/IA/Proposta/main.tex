@@ -1,0 +1,157 @@
+\def\year{2022}\relax
+%File: formatting-instruction.tex
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{hyphenat}
+\usepackage{aaai20}  % DO NOT CHANGE THIS
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet} % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{graphicx}  % DO NOT CHANGE THIS
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in}  % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in}  % DO NOT CHANGE THIS
+
+
+
+%\nocopyright
+%PDF Info Is REQUIRED.
+% For /Author, add all authors within the parentheses, separated by commas. No accents or commands.
+% For /Title, add Title in Mixed Case. No accents or commands. Retain the parentheses.
+ \pdfinfo{
+/Title (Previsao do Desempenho no Exame Nacional do Ensino Medio Baseado em Fatores Socioeconomicos)
+/Author (Matheus P.C. Santos, Ryan B. Ramos, Sungwon Yoon, Wendel F. Lana)
+} %Leave this	
+% /Title ()
+% Put your actual complete title (no codes, scripts, shortcuts, or LaTeX commands) within the parentheses in mixed case
+% Leave the space between \Title and the beginning parenthesis alone
+% /Author ()
+% Put your actual complete list of authors (no codes, scripts, shortcuts, or LaTeX commands) within the parentheses in mixed case. 
+% Each author should be only by a comma. If the name contains accents, remove them. If there are any LaTeX commands, 
+% remove them. 
+
+
+
+\setcounter{secnumdepth}{0} %May be changed to 1 or 2 if section numbers are desired.
+
+% The file aaai20.sty is the style file for AAAI Press 
+% proceedings, working notes, and technical reports.
+%
+\setlength\titlebox{2.5in} % If your paper contains an overfull \vbox too high warning at the beginning of the document, use this
+% command to correct it. You may not alter the value below 2.5 in
+\title{Previsão do Desempenho no Exame Nacional do Ensino Médio (ENEM) Baseado em Fatores Socioeconômicos}
+%Your title must be in mixed case, not sentence case. 
+% That means all verbs (including short verbs like be, is, using,and go), 
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+% directly follow a colon or long dash
+\author{Matheus P.C. Santos,\textsuperscript{\rm 1} Ryan B. Ramos,\textsuperscript{\rm 2} Sungwon Yoon,\textsuperscript{\rm 3} Wendel F.Lana\textsuperscript{\rm 4} \\ % All authors must be in the same font size and format. Use \Large and \textbf to achieve this result when breaking a line
+% use superscripts in text and roman font to identify them. For example, Sunil Issar,\textsuperscript{\rm 2} J. Scott Penberthy\textsuperscript{\rm 3} George Ferguson,\textsuperscript{\rm 4} Hans Guesgen\textsuperscript{\rm 5}. Note that the comma should be placed BEFORE the superscript for optimum readability
+Escola de Artes, Ciência e Humanidades - Universidade de São Paulo \\
+matheuspecoraro@usp.br,\textsuperscript{\rm 1} ryanramos@usp.br,\textsuperscript{\rm 2} sungwon.yoon@usp.br,\textsuperscript{\rm 3} wendel.lana@usp.br\textsuperscript{\rm 4} % email address must be in roman text type, not monospace or sans serif
+}
+
+
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+Este artigo tem por objetivo apresentar as propostas iniciais da análise de diferença de desempenho no Exame Nacional de Ensino Médio existente em conta das questões socioeconômicas, utilizando um modelo de inteligência artificial. 
+
+\end{abstract}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introdução}
+
+O Exame Nacional do Ensino Médio (Enem) é uma prova nacional que tem como objetivo avaliar o desempenho do estudante ao fim da escolaridade básica. Desde a sua criação em 1998 até hoje, todo ano tem número de participantes que engloba toda dimensão nacional.
+
+Porém, essa alcance nacional fez tornar visível como há discrepância de desempenho entre regiões segundo o desenvolvimento socioeconômico. Vários indicadores e pesquisas mostram que o nível de desempenho tende a se relacionar à desigualdade social.
+
+
+Assim, a proposta deste trabalho é mapear quais são os fatores mais determinantes no desempenho de candidatos do ENEM e detectar os alunos que possam apresentar rendimentos baixos na vida acadêmica e que, posteriormente, possam ser oferecidos assistências adequadas para que apresentem desempenhos melhores.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Metodologia}
+
+\subsection{Dados}
+
+O conjunto de dados utilizado no presente trabalho é o conjunto de microdados do ENEM de 2020 disponibilizado pelo Inep em 2020, que pode ser obtido em \url{https://download.inep.gov.br/microdados/microdados_enem_2020.zip}.
+
+Trata-se de dados realísticos que contêm informações de diversos participantes, como respostas às perguntas do questionário socioeconômico que devem ser autodeclarados na inscrição; dados da prova realizada como ano, nota das provas, gabarito e respostas da parte objetiva das provas; e informações pessoais como idade, faixa etária, etnia e situação escolar.
+
+Os dados dos participantes estão anonimizados, sendo diferenciados por um número de inscrição que impossibilita a identificação de um candidato no exame ou em microdados de pesquisas diferentes.
+
+
+
+\subsection{Arcabouço PEAS}
+
+O agente (modelo projetado para a predição), que é único (não sofre influência de algum outro agente), pode ser descrito em termos dos seguintes itens compreendidos no arcabouço PEAS:
+
+\begin{itemize}
+\item \textbf{Ambiente:} conjunto de participantes do ENEM e seus fatores socioeconômicos autodescritos.
+\begin{description}
+\item[Parcialmente observável:] há outros fatores a serem levados em consideração que têm influência no desempenho do aluno no exame que não são descritos pelos dados coletados, tais como empenho, situações e aspirações pessoais.
+\item[Estocástico:] partindo apenas do conjunto de fatores possíveis de serem observados e descritos, alunos nas mesmas condições descritas pelas observações podem apresentar desempenhos diferentes. A depender do algoritmo escolhido na implementação do modelo, será necessário tomar uma decisão determinística ou não no momento da predição.
+\item[Episódico:] cada entrada terá uma predição específica que não será influenciada por predições passadas (a menos que o modelo seja retreinado após cada nova predição).
+\item[Estático:] cada observação se mantém a mesma após a coleta dos dados.
+\item[Discreto:] as variáveis de entrada são todas categóricas (variáveis potencialmente contínuas foram discretizadas na coleta de dados) e a saída também é discreta. Assim, temos que o conjunto de estados e ações possíveis também são discretos.
+\item[Desconhecido:] embora possa-se ter uma noção intuitiva \textit{a priori} de como e quais fatores têm influência no desempenho do candidato, a função de transição exata não é conhecida. Em decorrência do treinamento do modelo, será possível encontra uma função que tenta aproximar a função real.
+\end{description}
+\item \textbf{Sensor:} entrada do modelo com os fatores socioeconômicos do candidato.
+\item \textbf{Atuador:} saída do modelo com a predição da nota do candidato.
+\item \textbf{Medida de desempenho:} se dá pela acurária das predições do modelo proposto.
+\end{itemize}
+
+
+\subsection{Solução segundo abordagem}
+
+Com a finalidade de detectar os estudantes que possam estar em risco educacional, será avaliado como as questões socioeconômicas impactam no desempenho do ENEM. Para isso, os dados que revelam os contextos sociais serão escolhidos como \emph{features} para a pesquisa.
+
+A correção da prova de ENEM é realizada por metodologia de Teoria de Respota ao Item (TRI) em que cada alternativa tem peso diferente, porém essas informações não são disponibilizadas no conjunto de dados, tampouco são conhecidos propriamente. Assim, esse fato pode dificultar a previsão das notas e comprometer o desempenho do modelo. 
+
+Desse modo, serão testados dois modelos: com saída final sendo a quantidade de respostas corretas e média de notas das quatro provas. 
+
+
+\subsection{Possíveis algoritmos}
+
+O problema abordado neste trabalho pode ser resolvido pelo aprendizado de máquina supervisionado, uma vez que, no conjunto de treinamento, há valores de saída esperados — as notas ou quantidade de acertos. Como a tarefa de classificação não é binária, mas sim de classificação multiclasse, os algoritmos de repressão logísitca, de regressão linear e alguns algoritmos de redes neurais como \emph{Support Vector Machine} (SVM) não foram considerados como possíveis soluções do problema, apesar da existência de bibliotecas que forneçam essa suporte para classificação multiclasse ou da possibilidade do problema ser decomposto em vários pequenos problemas binários. 
+
+Assim, possíveis algoritmos que podem ser implementados para solucionar o problema são \emph{k-nearest neighbor}, árvore de decisão, \emph{random forest}, \emph{Naive Bayes} e redes neurais.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Resultados}
+
+O modelo desenvolvido para o presente trabalho será avaliado pela sua precisão e revocação e, ao todo, por seu F1 \emph{Score} das saídas produzidas.
+
+As notas do ENEM são valores contínuos que variam de 0 a 1000 e há no total 180 questões ao longo de todas as quatro provas, o que abrange uma quantidade muito grande de possibilidades de saídas. Assim, não será avaliado se o modelo realizada a previsão exata, mas se ela faz parte de uma faixa de notas dividida em 100 em 100 ou de acertos dividida em 10 em 10.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\subsection{Referências} 
+
+\smallskip \noindent INSTITUTO NACIONAL DE ESTUDOS E PESQUISAS EDUCACIONAIS ANÍSIO TEIXEIRA. \textbf{Enem 2020}.
+Disponível em: <\url{https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/enem}>. Acesso em: 26 abr. 2022
+
+\smallskip \noindent MINISTÉRIO DA EDUCAÇÃO. \textbf{ENEM - MEC}. Disponível em: <\url{http://portal.mec.gov.br/enem-sp-2094708791}>. Acesso em: 03 mai. 2022
+
+\smallskip \noindent RUSSELL, S.; NORVIG, P. \textbf{Inteligência Artificial}. Tradução de Regina Célia Simille. 3º. ed. Rio de Janeiro: Elsevier, 2013
+
+\end{document}
