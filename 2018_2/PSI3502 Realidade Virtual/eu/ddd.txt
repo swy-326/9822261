@@ -1,0 +1,75 @@
+maquina de condutividade 
+뚜껑 열/닫 소리
+버튼 누르는 소리
+testando 소리
+resultado 나오는 소리
+타블렛 클릭하는 소리
+
+
+maquina de laser
+유리문 열닫
+amostra 안에 놓는 소리
+버튼 누르기
+문이 제대로 닫혔는지 안닫혔는지 (에러, 오케이 효과음)
+
+
+forno
+문 열기, objeto 넣기
+
+
+prensa 
+부서지는 소리
+버튼 소리
+
+
+nitrogenio liquido
+pote de metal <- fumaca
+tablet 有
+
+
+microscopio eletronico
+문 열고 닫
+버튼
+
+
+
+
+tablet 터치 소리
+
+프로그래밍 할때 한 실험을 여러번 해서 anomalia카운팅이 여러개 되지 않게
+
+
+
+
+
+- pegar amostra
+- abrir a tampa da maquina
+- colocar a amostra dentro da maquina
+- fechar a porta
+- apertar o botao
+- verificar se a amostra esta dentro da maquina
+- inicio/termino do teste (mostrar o resultado)
+- clicar tablet
+- as maquinas funcionando
+
+- avisar que faltam anomalias a serem descobertas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
