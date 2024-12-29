@@ -1,0 +1,298 @@
+
+
+?????  Escreva uma frase de introdução ao jogo ... 
+
+
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  .  |  .  |  .  |  .  |
+      +-----+-----+-----+-----+
+    2 |  .  |  O  |  X  |  .  |
+      +-----+-----+-----+-----+
+    3 |  .  |  X  |  O  |  .  |
+      +-----+-----+-----+-----+
+    4 |  .  |  .  |  .  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 2 marca(s) no tabuleiro
+'O' tem 2 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'X'.
+
+Digite a linha da posição em que pretende jogar: 4
+Digite a coluna da posição em que pretende jogar: 3
+
+Jogador 'X' colocou sua marca na posição (4, 3).
+1 'O'(s) revertido(s) para 'X'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  .  |  .  |  .  |  .  |
+      +-----+-----+-----+-----+
+    2 |  .  |  O  |  X  |  .  |
+      +-----+-----+-----+-----+
+    3 |  .  |  X  |  X  |  .  |
+      +-----+-----+-----+-----+
+    4 |  .  |  .  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 4 marca(s) no tabuleiro
+'O' tem 1 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'O'.
+
+Jogador 'O' colocou sua marca na posição (2, 4).
+1 'X'(s) revertido(s) para 'O'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  .  |  .  |  .  |  .  |
+      +-----+-----+-----+-----+
+    2 |  .  |  O  |  O  |  O  |
+      +-----+-----+-----+-----+
+    3 |  .  |  X  |  X  |  .  |
+      +-----+-----+-----+-----+
+    4 |  .  |  .  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 3 marca(s) no tabuleiro
+'O' tem 3 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'X'.
+
+Digite a linha da posição em que pretende jogar: 1
+Digite a coluna da posição em que pretende jogar: 2
+
+Jogador 'X' colocou sua marca na posição (1, 2).
+1 'O'(s) revertido(s) para 'X'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  .  |  X  |  .  |  .  |
+      +-----+-----+-----+-----+
+    2 |  .  |  X  |  O  |  O  |
+      +-----+-----+-----+-----+
+    3 |  .  |  X  |  X  |  .  |
+      +-----+-----+-----+-----+
+    4 |  .  |  .  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 5 marca(s) no tabuleiro
+'O' tem 2 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'O'.
+
+Jogador 'O' colocou sua marca na posição (2, 1).
+1 'X'(s) revertido(s) para 'O'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  .  |  X  |  .  |  .  |
+      +-----+-----+-----+-----+
+    2 |  O  |  O  |  O  |  O  |
+      +-----+-----+-----+-----+
+    3 |  .  |  X  |  X  |  .  |
+      +-----+-----+-----+-----+
+    4 |  .  |  .  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 4 marca(s) no tabuleiro
+'O' tem 4 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'X'.
+
+Digite a linha da posição em que pretende jogar: 1
+Digite a coluna da posição em que pretende jogar: 1
+
+Jogador 'X' colocou sua marca na posição (1, 1).
+1 'O'(s) revertido(s) para 'X'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  X  |  X  |  .  |  .  |
+      +-----+-----+-----+-----+
+    2 |  O  |  X  |  O  |  O  |
+      +-----+-----+-----+-----+
+    3 |  .  |  X  |  X  |  .  |
+      +-----+-----+-----+-----+
+    4 |  .  |  .  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 6 marca(s) no tabuleiro
+'O' tem 3 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'O'.
+
+Jogador 'O' colocou sua marca na posição (4, 1).
+1 'X'(s) revertido(s) para 'O'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  X  |  X  |  .  |  .  |
+      +-----+-----+-----+-----+
+    2 |  O  |  X  |  O  |  O  |
+      +-----+-----+-----+-----+
+    3 |  .  |  O  |  X  |  .  |
+      +-----+-----+-----+-----+
+    4 |  O  |  .  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 5 marca(s) no tabuleiro
+'O' tem 5 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'X'.
+
+Digite a linha da posição em que pretende jogar: 3
+Digite a coluna da posição em que pretende jogar: 1
+
+Jogador 'X' colocou sua marca na posição (3, 1).
+2 'O'(s) revertido(s) para 'X'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  X  |  X  |  .  |  .  |
+      +-----+-----+-----+-----+
+    2 |  X  |  X  |  O  |  O  |
+      +-----+-----+-----+-----+
+    3 |  X  |  X  |  X  |  .  |
+      +-----+-----+-----+-----+
+    4 |  O  |  .  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 8 marca(s) no tabuleiro
+'O' tem 3 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'O'.
+
+Jogador 'O' colocou sua marca na posição (4, 2).
+1 'X'(s) revertido(s) para 'O'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  X  |  X  |  .  |  .  |
+      +-----+-----+-----+-----+
+    2 |  X  |  X  |  O  |  O  |
+      +-----+-----+-----+-----+
+    3 |  X  |  X  |  O  |  .  |
+      +-----+-----+-----+-----+
+    4 |  O  |  O  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 7 marca(s) no tabuleiro
+'O' tem 5 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'X'.
+
+Digite a linha da posição em que pretende jogar: 1
+Digite a coluna da posição em que pretende jogar: 3
+
+Jogador 'X' colocou sua marca na posição (1, 3).
+2 'O'(s) revertido(s) para 'X'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  X  |  X  |  X  |  .  |
+      +-----+-----+-----+-----+
+    2 |  X  |  X  |  X  |  O  |
+      +-----+-----+-----+-----+
+    3 |  X  |  X  |  X  |  .  |
+      +-----+-----+-----+-----+
+    4 |  O  |  O  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 10 marca(s) no tabuleiro
+'O' tem 3 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'O'.
+
+Jogador 'O' colocou sua marca na posição (1, 4).
+2 'X'(s) revertido(s) para 'O'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  X  |  X  |  X  |  O  |
+      +-----+-----+-----+-----+
+    2 |  X  |  X  |  O  |  O  |
+      +-----+-----+-----+-----+
+    3 |  X  |  O  |  X  |  .  |
+      +-----+-----+-----+-----+
+    4 |  O  |  O  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 8 marca(s) no tabuleiro
+'O' tem 6 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'X'.
+
+Digite a linha da posição em que pretende jogar: 3
+Digite a coluna da posição em que pretende jogar: 4
+
+Jogador 'X' colocou sua marca na posição (3, 4).
+1 'O'(s) revertido(s) para 'X'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  X  |  X  |  X  |  O  |
+      +-----+-----+-----+-----+
+    2 |  X  |  X  |  X  |  O  |
+      +-----+-----+-----+-----+
+    3 |  X  |  O  |  X  |  X  |
+      +-----+-----+-----+-----+
+    4 |  O  |  O  |  X  |  .  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 10 marca(s) no tabuleiro
+'O' tem 5 marca(s) no tabuleiro
+
+--->  Jogador da vez é 'O'.
+
+Jogador 'O' colocou sua marca na posição (4, 4).
+2 'X'(s) revertido(s) para 'O'(s).
+
+
+         1     2     3     4  
+      +-----+-----+-----+-----+
+    1 |  X  |  X  |  X  |  O  |
+      +-----+-----+-----+-----+
+    2 |  X  |  X  |  X  |  O  |
+      +-----+-----+-----+-----+
+    3 |  X  |  O  |  X  |  O  |
+      +-----+-----+-----+-----+
+    4 |  O  |  O  |  O  |  O  |
+      +-----+-----+-----+-----+
+
+
+'X' tem 8 marca(s) no tabuleiro
+'O' tem 8 marca(s) no tabuleiro
+
+
+  PARTIDA TERMINADA.
+
+ Jogadores 'X' e 'O' empataram.
+
+ 
