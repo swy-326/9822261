@@ -1,3 +1,2 @@
-# Repositório de provas/trabalhos/exercícios feitos
-
-Sistemas de Informação, EACH - USP
+- 2016 - 2019: Letras, FFLCH - USP
+- 2020 - 202: Sistemas de Informação, EACH - USP
